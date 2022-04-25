@@ -44,7 +44,7 @@ const footerNavigation = {
     {
       name: "Facebook",
       href: "#",
-      icon: (props) => (
+      icon: (props:any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -57,7 +57,7 @@ const footerNavigation = {
     {
       name: "Instagram",
       href: "#",
-      icon: (props) => (
+      icon: (props:any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -70,7 +70,7 @@ const footerNavigation = {
     {
       name: "Twitter",
       href: "#",
-      icon: (props) => (
+      icon: (props:any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
         </svg>
@@ -79,7 +79,7 @@ const footerNavigation = {
     {
       name: "GitHub",
       href: "#",
-      icon: (props) => (
+      icon: (props:any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -92,7 +92,7 @@ const footerNavigation = {
     {
       name: "Dribbble",
       href: "#",
-      icon: (props) => (
+      icon: (props:any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -322,7 +322,7 @@ function Home() {
                           <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                         </svg>
                         <p className="relative">
-                          {'"'}I{"'"}m a big fan of the AI writing tool. It's
+                          {'"'}I{"'"}m a big fan of the AI writing tool. It{"'"}s
                           helped me improve my writing skills and become a
                           better writer. I highly recommend it to anyone who
                           wants to improve their writing.{'"'}

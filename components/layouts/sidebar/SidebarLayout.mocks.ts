@@ -1,6 +1,6 @@
-import { IBaseTemplate } from './SidebarLayout';
+import { ISidebarLayout } from './SidebarLayout';
 
-const base: IBaseTemplate = {
+const base: ISidebarLayout = {
   sampleTextProp: 'Hello world!',
 };
 
