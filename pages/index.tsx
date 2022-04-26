@@ -1,4 +1,7 @@
 import { ChevronRightIcon, StarIcon } from "@heroicons/react/solid";
+import SiteLogo from "../components/common/SiteLogo";
+import { useRouter } from "next/dist/client/router";
+import Link from "next/link";
 
 const stats = [
   { label: "Founded", value: "2021" },
@@ -44,7 +47,7 @@ const footerNavigation = {
     {
       name: "Facebook",
       href: "#",
-      icon: (props:any) => (
+      icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -57,7 +60,7 @@ const footerNavigation = {
     {
       name: "Instagram",
       href: "#",
-      icon: (props:any) => (
+      icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -70,7 +73,7 @@ const footerNavigation = {
     {
       name: "Twitter",
       href: "#",
-      icon: (props:any) => (
+      icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
         </svg>
@@ -79,7 +82,7 @@ const footerNavigation = {
     {
       name: "GitHub",
       href: "#",
-      icon: (props:any) => (
+      icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -92,7 +95,7 @@ const footerNavigation = {
     {
       name: "Dribbble",
       href: "#",
-      icon: (props:any) => (
+      icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -113,16 +116,7 @@ function Home() {
         <div className="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
           <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
             <div>
-              <div className="flex items-center">
-                <img
-                  className="h-11 w-auto pr-2"
-                  src="/icons/cat.svg"
-                  alt="Workflow"
-                />
-                <div className="font-bold border-r-2 pr-2 text-lg">
-                  Copykitties
-                </div>
-              </div>
+              <SiteLogo />
               <div className="mt-20">
                 <div>
                   <a href="#" className="inline-flex space-x-4">
@@ -151,18 +145,12 @@ function Home() {
                 </div>
 
                 <div className="flex space-x-4">
-                  <button
-                    type="submit"
-                    className="block w-full rounded-md border border-transparent px-5 py-3 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4"
-                  >
-                    Start writing with free trial
-                  </button>
-                  <button
-                    type="submit"
-                    className=" rounded-md border border-transparent px-5 py-3 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4"
-                  >
-                    Login
-                  </button>
+                  {SignInButton("")}
+                  <Link href="register" passHref>
+                    <div className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4">
+                      Signup with email
+                    </div>
+                  </Link>
                 </div>
                 <div className="mt-6">
                   <div className="inline-flex items-center divide-x divide-gray-300">
@@ -322,8 +310,8 @@ function Home() {
                           <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                         </svg>
                         <p className="relative">
-                          {'"'}I{"'"}m a big fan of the AI writing tool. It{"'"}s
-                          helped me improve my writing skills and become a
+                          {'"'}I{"'"}m a big fan of the AI writing tool. It{"'"}
+                          s helped me improve my writing skills and become a
                           better writer. I highly recommend it to anyone who
                           wants to improve their writing.{'"'}
                         </p>
@@ -574,3 +562,49 @@ export default Home;
 //     </PrimaryLayout>
 //   );
 // };
+
+function SignInButton(user: any) {
+  const router = useRouter();
+  // const signInWithGoogle = async () => {
+  //   await signInWithPopup(auth, googleAuthProvider);
+  //   const usernameRef = doc(db, "users", auth.currentUser.uid);
+  //   const userSnap = await getDoc(usernameRef);
+  //   console.log(userSnap.data()?.username);
+
+  //   if (userSnap.data()?.username) {
+  //     router.push("/home");
+  //   }
+  // };
+  return (
+    <div className="py-4">
+      {!user ? (
+        <div>
+          <div
+            // onClick={signInWithGoogle}
+            className="flex items-center justify-center border rounded cursor-pointer"
+          >
+            <div>
+              <span className="sr-only">Sign in with Google</span>
+              <img src={"/icons/google.svg"} className="m-2 h-12 w-12" />
+            </div>
+            <p className="font-medium text-gray-700 flex-1 text-center pr-2">
+              Sign in with Google
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div
+          // onClick={() => signOut(auth)}
+          className="flex items-center justify-center border rounded cursor-pointer"
+        >
+          <div>
+            <img src={user.photoURL} className="m-2 h-12 w-12" />
+          </div>
+          <p className="font-medium text-gray-700 flex-1 text-center pr-2">
+            {user.displayName}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
