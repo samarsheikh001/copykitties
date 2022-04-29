@@ -5,7 +5,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 
 export function useUserData() {
   const [user] = useAuthState(auth);
-  const [isUserPremium, setIsUserPremium] = useState<Boolean>(false);
+  const [isUserPremium, setIsUserPremium] = useState<boolean>(false);
 
   useEffect(() => {
     let unsubscribe;

@@ -110,8 +110,8 @@ const footerNavigation = {
   ],
 };
 
-function Home() {
-  const { user, isPremium } = useContext(UserContext);
+function LandingPage() {
+  const { user, isUserPremium } = useContext(UserContext);
   return (
     <div className="bg-white">
       <main>
@@ -564,7 +564,7 @@ function Home() {
   );
 }
 
-export default Home;
+export default LandingPage;
 
 // Home.getLayout = (page) => {
 //   return (
@@ -577,7 +577,8 @@ export default Home;
 
 import { UserContext } from "../lib/context";
 import { useContext } from "react";
-function SignInButton(user) {
+import { UserInfo } from "firebase/auth";
+function SignInButton(user?: UserInfo | null | undefined) {
   const router = useRouter();
   // const signInWithGoogle = async () => {
   //   await signInWithPopup(auth, googleAuthProvider);
@@ -610,7 +611,7 @@ function SignInButton(user) {
         <Link href="/home" passHref>
           <div className="flex items-center justify-center border rounded cursor-pointer">
             <div>
-              <img src={user.photoURL} className="m-2 h-12 w-12" />
+              <img src={user.photoURL!} className="m-2 h-12 w-12" />
             </div>
             <p className="font-medium text-gray-700 flex-1 text-center pr-2">
               Continue as {user.displayName}

@@ -1,12 +1,12 @@
 import { createContext } from "react";
-import { UserInfo } from "firebase/auth";
+import { User } from "firebase/auth";
 
 export interface UserContextInterface {
-  user: UserInfo | null | undefined;
-  isPremium: boolean;
+  user: User | null | undefined;
+  isUserPremium: boolean;
 }
 
 export const UserContext = createContext<UserContextInterface>({
   user: null,
-  isPremium: false,
+  isUserPremium: false,
 });
