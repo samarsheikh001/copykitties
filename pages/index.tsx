@@ -3,6 +3,8 @@ import SiteLogo from "../components/common/SiteLogo";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 
+import { signIn, signOut } from "../lib/firebase";
+
 const stats = [
   { label: "Founded", value: "2021" },
   { label: "Employees", value: "5" },
@@ -109,6 +111,7 @@ const footerNavigation = {
 };
 
 function Home() {
+  const { user, isPremium } = useContext(UserContext);
   return (
     <div className="bg-white">
       <main>
@@ -145,12 +148,21 @@ function Home() {
                 </div>
 
                 <div className="flex space-x-4">
-                  {SignInButton("")}
-                  <Link href="register" passHref>
-                    <div className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4">
-                      Signup with email
+                  {SignInButton(user)}
+                  {user ? (
+                    <div
+                      onClick={() => signOut()}
+                      className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4"
+                    >
+                      Logout
                     </div>
-                  </Link>
+                  ) : (
+                    <Link href="/register" passHref>
+                      <div className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4">
+                        Signup with email
+                      </div>
+                    </Link>
+                  )}
                 </div>
                 <div className="mt-6">
                   <div className="inline-flex items-center divide-x divide-gray-300">
@@ -563,7 +575,9 @@ export default Home;
 //   );
 // };
 
-function SignInButton(user: any) {
+import { UserContext } from "../lib/context";
+import { useContext } from "react";
+function SignInButton(user) {
   const router = useRouter();
   // const signInWithGoogle = async () => {
   //   await signInWithPopup(auth, googleAuthProvider);
@@ -580,7 +594,7 @@ function SignInButton(user: any) {
       {!user ? (
         <div>
           <div
-            // onClick={signInWithGoogle}
+            onClick={() => signIn()}
             className="flex items-center justify-center border rounded cursor-pointer"
           >
             <div>
@@ -593,17 +607,16 @@ function SignInButton(user: any) {
           </div>
         </div>
       ) : (
-        <div
-          // onClick={() => signOut(auth)}
-          className="flex items-center justify-center border rounded cursor-pointer"
-        >
-          <div>
-            <img src={user.photoURL} className="m-2 h-12 w-12" />
+        <Link href="/home" passHref>
+          <div className="flex items-center justify-center border rounded cursor-pointer">
+            <div>
+              <img src={user.photoURL} className="m-2 h-12 w-12" />
+            </div>
+            <p className="font-medium text-gray-700 flex-1 text-center pr-2">
+              Continue as {user.displayName}
+            </p>
           </div>
-          <p className="font-medium text-gray-700 flex-1 text-center pr-2">
-            {user.displayName}
-          </p>
-        </div>
+        </Link>
       )}
     </div>
   );

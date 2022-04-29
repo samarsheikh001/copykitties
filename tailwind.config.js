@@ -5,12 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily : {
-        'dmsans': ['DM Sans', 'sans-serif'],
-      }
+      fontFamily: {
+        dmsans: ["DM Sans", "sans-serif"],
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/line-clamp")],
+};
