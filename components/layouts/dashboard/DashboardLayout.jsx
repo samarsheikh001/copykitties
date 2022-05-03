@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { classNames } from "/lib/classnames";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
 
 const user = {
   name: "Samar Sheikh",
@@ -27,7 +26,6 @@ const userNavigation = [
 const DashboardLayout = ({ children }) => {
   return (
     <>
-      {" "}
       <div className="h-full bg-gray-100">
         <div className="min-h-full">
           <Header />
@@ -67,7 +65,7 @@ function Header() {
       {({ open }) => (
         <>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            <div className="relative flex flex-wrap items-center justify-center lg:justify-between">
+            <div className="relative flex flex-wrap items-center justify-center lg:justify-between py-5">
               {/* Logo */}
               <div className="absolute left-0 py-5 flex-shrink-0 lg:static">
                 <a href="#">
@@ -155,26 +153,6 @@ function Header() {
                         </a>
                       ))}
                     </nav>
-                  </div>
-                  <div className="px-12 lg:px-0">
-                    {/* Search */}
-                    <div className="max-w-xs mx-auto w-full lg:max-w-md">
-                      <label htmlFor="search" className="sr-only">
-                        Search
-                      </label>
-                      <div className="relative text-white focus-within:text-gray-600">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                          <SearchIcon className="h-5 w-5" aria-hidden="true" />
-                        </div>
-                        <input
-                          id="search"
-                          className="block w-full text-white bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 focus:text-gray-900 placeholder-white focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
-                          placeholder="Search"
-                          type="search"
-                          name="search"
-                        />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
