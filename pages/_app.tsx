@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { NextPageWithLayout } from "./page";
 import "../styles/globals.css";
+import "../styles/styles.css"
 import { Toaster } from "react-hot-toast";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";

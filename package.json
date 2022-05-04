@@ -11,19 +11,27 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.24.2",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
     "@storybook/builder-webpack5": "^6.4.22",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "@tiptap/react": "^2.0.0-beta.109",
+    "@tiptap/starter-kit": "^2.0.0-beta.184",
+    "babel-polyfill": "^6.26.0",
     "firebase": "^9.6.11",
     "heroicons": "^1.0.6",
     "next": "12.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^5.0.3",
+    "react-hook-form": "^7.30.0",
     "react-hot-toast": "^2.2.0",
-    "storybook": "^6.4.22"
+    "react-icons": "^4.3.1",
+    "save": "^2.5.0",
+    "storybook": "^6.4.22",
+    "uninstall": "^0.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
