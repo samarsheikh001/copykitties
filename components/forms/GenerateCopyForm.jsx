@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { classNames } from "../../lib/classnames";
-import CatLoader from "../common/Loader/cat/CatLoader";
 const people = [
   {
     id: 1,
