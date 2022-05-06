@@ -244,7 +244,7 @@ export default function Editor() {
 }
 
 import EditorForm from "../../components/forms/GenerateCopyForm";
-
+import CatLoader from "../../components/common/Loader/cat/CatLoader";
 function MainArea() {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -275,7 +275,6 @@ function MainArea() {
 }
 
 import ResultCard from "../../components/cards/ResultCard";
-import CatLoader from "../../components/common/Loader/cat/CatLoader";
 function ResultList(items) {
   return (
     <ul role="list" className="space-y-3">
