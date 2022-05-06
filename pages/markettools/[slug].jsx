@@ -244,7 +244,7 @@ export default function Editor() {
 }
 
 import EditorForm from "../../components/forms/GenerateCopyForm";
-import CatLoader from "../../components/common/Loader/cat/CatLoader";
+import CatLoader from "../../components/common/Loader/cat/CatLoader.jsx";
 function MainArea() {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(false);
