@@ -13,6 +13,8 @@ import {
 
 import SiteIcon from "../../components/common/SiteLogo";
 import { toast } from "react-hot-toast";
+import EditorForm from "../../components/forms/GenerateCopyForm";
+import CatLoader from "../../components/common/loader/cat/CatLoader.jsx";
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -243,8 +245,6 @@ export default function Editor() {
   );
 }
 
-import EditorForm from "../../components/forms/GenerateCopyForm";
-import CatLoader from "../../components/common/Loader/cat/CatLoader.jsx";
 function MainArea() {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(false);
