@@ -14,7 +14,7 @@ import {
 import SiteIcon from "../../components/common/SiteLogo";
 import { toast } from "react-hot-toast";
 import EditorForm from "../../components/forms/GenerateCopyForm";
-import CatLoader from "../../components/common/loader/cat/CatLoader.jsx";
+import CatLoader from "../../components/common/loader/Cat/CatLoader.jsx";
 
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
