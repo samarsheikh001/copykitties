@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { NextPageWithLayout } from "./page";
 import "../styles/globals.css";
-import "../styles/styles.css"
+import "../styles/styles.css";
 import { Toaster } from "react-hot-toast";
 import { UserContext } from "../lib/context";
 import { useUserData } from "../lib/hooks";
@@ -10,15 +10,18 @@ interface AppPropsWithLayout extends AppProps {
 }
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page);
 
   const userData = useUserData();
 
-  return getLayout(
+  return (
     <UserContext.Provider value={userData}>
-      <Component {...pageProps} />
-      <Toaster />
+      {getLayout(
+        <>
+          <Component {...pageProps} />
+          <Toaster />
+        </>
+      )}
     </UserContext.Provider>
   );
 }

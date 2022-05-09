@@ -2,19 +2,9 @@ import DashboardLayout from "../components/layouts/dashboard/DashboardLayout";
 import Image from "next/image";
 import { classNames } from "/lib/classnames";
 import { NewspaperIcon, PencilAltIcon } from "@heroicons/react/outline";
-
-const user = {
-  name: "Samar Sheikh",
-  email: "samarsheikh001@gmail.com",
-  role: "Copykitty ;)",
-  imageUrl:
-    "https://pbs.twimg.com/profile_images/1519082684990992384/iGP3_f5c_400x400.jpg",
-};
-const stats = [
-  { label: "words generated", value: 120 },
-  { label: "Credits", value: 40 },
-  { label: "Projects", value: 20 },
-];
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../lib/context";
+import AuthCheck from "../components/common/AuthCheck";
 
 const actions = [
   {
@@ -25,11 +15,12 @@ const actions = [
     iconBackground: "bg-blue-50",
     hoverBackground: "hover:bg-blue-50",
     description: "Let AI Help You Write Better, More Engaging Blog Posts",
+    comingSoon: true,
   },
   {
     icon: PencilAltIcon,
     name: "Article",
-    href: "#",
+    href: "Article",
     iconForeground: "text-purple-700",
     iconBackground: "bg-purple-50",
     hoverBackground: "hover:bg-purple-50",
@@ -42,7 +33,7 @@ const marketingActions = [
   {
     svg: "/icons/playstore.svg",
     name: "App publish content",
-    href: "#",
+    href: "AppTitle",
     iconBackground: "bg-fuchsia-50",
     hoverBackground: "hover:bg-fuchsia-50",
     description:
@@ -51,7 +42,7 @@ const marketingActions = [
   {
     svg: "/icons/google.svg",
     name: "Google ads Headline",
-    href: "#",
+    href: "GoogleAdsHeadline",
     iconBackground: "bg-teal-50",
     hoverBackground: "hover:bg-teal-50",
     description:
@@ -60,7 +51,7 @@ const marketingActions = [
   {
     svg: "/icons/youtube.svg",
     name: "Video Titles",
-    href: "#",
+    href: "VideoTitle",
     iconBackground: "bg-red-50",
     hoverBackground: "hover:bg-red-50",
     description:
@@ -69,63 +60,37 @@ const marketingActions = [
   {
     svg: "/icons/instagram.svg",
     name: "Photo Post Captions",
-    href: "#",
+    href: "SocialMediaCaption",
     iconBackground: "bg-purple-50",
     hoverBackground: "hover:bg-purple-50",
     description: "Write catchy captions for your Instagram posts",
   },
   {
-    svg: "/icons/google.svg",
-    name: "Payroll",
+    svg: "/icons/quora.svg",
+    name: "Quora Answers",
     href: "#",
-    iconBackground: "bg-yellow-50",
-    hoverBackground: "hover:bg-yellow-50",
+    iconBackground: "bg-red-50",
+    hoverBackground: "hover:bg-red-50",
+    description: "Intelligent answers for tough questions.",
   },
   {
-    svg: "/icons/google.svg",
-    name: "Submit an expense",
-    href: "#",
-    iconBackground: "bg-rose-50",
-    hoverBackground: "hover:bg-rose-50",
-  },
-  {
-    svg: "/icons/google.svg",
-    name: "Training",
-    href: "#",
-    iconBackground: "bg-indigo-50",
-    hoverBackground: "hover:bg-indigo-50",
+    svg: "/icons/chat.svg",
+    name: "Short Social Post",
+    href: "ShortSocialPost",
+    iconBackground: "bg-purple-50",
+    hoverBackground: "hover:bg-purple-50",
+    description: "Generate short social posts under 140 characters.",
   },
 ];
 
 const recentProjects = [
-  {
-    name: "Leonard Krasner",
-    handle: "leonardkrasner",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    href: "#",
-  },
-  {
-    name: "Floyd Miles",
-    handle: "floydmiles",
-    imageUrl:
-      "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    href: "#",
-  },
-  {
-    name: "Emily Selman",
-    handle: "emilyselman",
-    imageUrl:
-      "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    href: "#",
-  },
-  {
-    name: "Kristin Watson",
-    handle: "kristinwatson",
-    imageUrl:
-      "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    href: "#",
-  },
+  // {
+  //   name: "Leonard Krasner",
+  //   handle: "leonardkrasner",
+  //   imageUrl:
+  //     "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  //   href: "#",
+  // },
 ];
 const announcements = [
   // {
@@ -139,63 +104,14 @@ const announcements = [
 
 export default function Home() {
   return (
-    <>
+    <AuthCheck>
       <h1 className="sr-only">Profile</h1>
       {/* Main 3 column grid */}
       <div className="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
         {/* Left column */}
         <div className="grid grid-cols-1 gap-4 lg:col-span-2">
           {/* Welcome panel */}
-          <section aria-labelledby="profile-overview-title">
-            <div className="rounded-lg bg-white overflow-hidden shadow">
-              <h2 className="sr-only" id="profile-overview-title">
-                Profile Overview
-              </h2>
-              <div className="bg-white p-6">
-                <div className="sm:flex sm:items-center sm:justify-between">
-                  <div className="sm:flex sm:space-x-5">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="mx-auto h-20 w-20 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
-                      />
-                    </div>
-                    <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                      <p className="text-sm font-medium text-gray-600">
-                        Welcome back, what are you making today?
-                      </p>
-                      <p className="text-xl font-bold text-gray-900 sm:text-2xl">
-                        {user.name}
-                      </p>
-                      <p className="text-sm font-medium text-gray-600">
-                        {user.role}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex justify-center sm:mt-0">
-                    <a
-                      href="#"
-                      className="flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                    >
-                      View profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="px-6 py-5 text-sm font-medium text-center"
-                  >
-                    <span className="text-gray-900">{stat.value}</span>{" "}
-                    <span className="text-gray-600">{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <WelcomePanel />
 
           {/*Actions panel */}
           <ActionsPanel
@@ -283,53 +199,62 @@ export default function Home() {
                 >
                   Recent Projects
                 </h2>
-                <div className="flow-root mt-6">
-                  <ul role="list" className="-my-5 divide-y divide-gray-200">
-                    {recentProjects.map((person) => (
-                      <li key={person.handle} className="py-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src={person.imageUrl}
-                              alt=""
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
-                              {person.name}
-                            </p>
-                            <p className="text-sm text-gray-500 truncate">
-                              {"@" + person.handle}
-                            </p>
-                          </div>
-                          <div>
-                            <a
-                              href={person.href}
-                              className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
-                            >
-                              View
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-6">
-                  <a
-                    href="#"
-                    className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                  >
-                    View all
-                  </a>
-                </div>
+                {recentProjects.length === 0 ? (
+                  <>Feature coming soon</>
+                ) : (
+                  <>
+                    <div className="flow-root mt-6">
+                      <ul
+                        role="list"
+                        className="-my-5 divide-y divide-gray-200"
+                      >
+                        {recentProjects.map((person) => (
+                          <li key={person.handle} className="py-4">
+                            <div className="flex items-center space-x-4">
+                              <div className="flex-shrink-0">
+                                <img
+                                  className="h-8 w-8 rounded-full"
+                                  src={person.imageUrl}
+                                  alt=""
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-gray-900 truncate">
+                                  {person.name}
+                                </p>
+                                <p className="text-sm text-gray-500 truncate">
+                                  {"@" + person.handle}
+                                </p>
+                              </div>
+                              <div>
+                                <a
+                                  href={person.href}
+                                  className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
+                                >
+                                  View
+                                </a>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="mt-6">
+                      <a
+                        href="#"
+                        className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                      >
+                        View all
+                      </a>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </section>
         </div>
       </div>
-    </>
+    </AuthCheck>
   );
 }
 
@@ -378,14 +303,29 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
                   />
                 )}
               </span>
+              {action.comingSoon && (
+                <div className="bg-yellow-200 text-yellow-900 text-xl">
+                  Coming soon
+                </div>
+              )}
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-medium">
-                <a href={action.href} className="focus:outline-none">
-                  {/* Extend touch target to entire panel */}
-                  <span className="absolute inset-0" aria-hidden="true" />
-                  {action.name}
-                </a>
+                {action.href === "#" ? (
+                  <div className="focus:outline-none">
+                    {/* Extend touch target to entire panel */}
+                    <span className="absolute inset-0" aria-hidden="true" />
+                    {action.name}
+                  </div>
+                ) : (
+                  <Link href={"/marketingtools/" + action.href}>
+                    <div className="focus:outline-none cursor-pointer">
+                      {/* Extend touch target to entire panel */}
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      {action.name}
+                    </div>
+                  </Link>
+                )}
               </h3>
               <p className="mt-2 text-sm text-gray-500">{action.description}</p>
             </div>
@@ -404,6 +344,67 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
             </span>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+import Link from "next/link";
+function WelcomePanel() {
+  const { user, tokens } = useContext(UserContext);
+  // const stats = [
+  //   { label: "words generated", value: 120 },
+  //   { label: "Tokens", value: tokens },
+  //   { label: "Projects", value: 20 },
+  // ];
+
+  return (
+    <section aria-labelledby="profile-overview-title">
+      <div className="rounded-lg bg-white overflow-hidden shadow">
+        <h2 className="sr-only" id="profile-overview-title">
+          Profile Overview
+        </h2>
+        <div className="bg-white p-6">
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <div className="sm:flex sm:space-x-5">
+              <div className="flex-shrink-0">
+                <img
+                  className="mx-auto h-20 w-20 rounded-full"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </div>
+              <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
+                <p className="text-sm font-medium text-gray-600">
+                  Welcome back, what are you making today?
+                </p>
+                <p className="text-xl font-bold text-gray-900 sm:text-2xl">
+                  {user.displayName}
+                </p>
+                <p className="text-sm font-medium text-gray-600">
+                  {tokens + " tokens remaining"}
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 flex justify-center sm:mt-0">
+              <Link href="/pricing" passHref>
+                <div className="flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 cursor-pointer">
+                  Recharge Tokens
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+        {/* <div className="border-t border-gray-200 bg-gray-50 grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="px-6 py-5 text-sm font-medium text-center"
+            >
+              <span className="text-gray-900">{stat.value}</span>{" "}
+              <span className="text-gray-600">{stat.label}</span>
+            </div>
+          ))}
+        </div> */}
       </div>
     </section>
   );

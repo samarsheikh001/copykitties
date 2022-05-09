@@ -10,7 +10,7 @@ const people = [
   },
 ];
 
-export default function EditorForm(onSubmitForm) {
+export default function GenerateCopyForm(onSubmitForm) {
   const [query, setQuery] = useState("");
   const [selectedPerson, setSelectedPerson] = useState();
 

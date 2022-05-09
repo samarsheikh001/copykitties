@@ -122,18 +122,20 @@ function LandingPage() {
               <SiteLogo />
               <div className="mt-20">
                 <div>
-                  <a href="#" className="inline-flex space-x-4">
-                    <span className="rounded bg-gray-50 px-2.5 py-1 text-xs font-semibold text-gray-500 tracking-wide uppercase">
-                      Newly launched
-                    </span>
-                    <span className="inline-flex items-center text-sm font-medium text-gray-500 space-x-1">
-                      <span>Just shipped version 0.1.0</span>
-                      <ChevronRightIcon
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </a>
+                  <Link href="/pricing" passHref>
+                    <div className="inline-flex space-x-4 cursor-pointer">
+                      <span className="rounded bg-gray-50 px-2.5 py-1 text-xs font-semibold text-gray-500 tracking-wide uppercase">
+                        Newly launched
+                      </span>
+                      <span className="inline-flex items-center text-sm font-medium text-gray-500 space-x-1">
+                        <span>Get premium for cheapest</span>
+                        <ChevronRightIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </div>
+                  </Link>
                 </div>
                 <div className="mt-6 sm:max-w-xl">
                   <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
@@ -157,9 +159,9 @@ function LandingPage() {
                       Logout
                     </div>
                   ) : (
-                    <Link href="/register" passHref>
+                    <Link href="/pricing" passHref>
                       <div className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4">
-                        Signup with email
+                        Pricing
                       </div>
                     </Link>
                   )}
