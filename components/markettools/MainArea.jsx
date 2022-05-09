@@ -1,4 +1,4 @@
-import CatLoader from "../common/loader/Cat/CatLoader";
+import CatLoader from "../common/loader/cat/CatLoader";
 import ResultList from "./ResultList";
 import GenerateCopyForm from "../forms/GenerateCopyForm";
 import { useState } from "react";
