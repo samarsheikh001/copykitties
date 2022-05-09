@@ -8,6 +8,7 @@ import { decrementToken } from "../../lib/firebase";
 import { useContext } from "react";
 import { UserContext } from "../../lib/context";
 import Link from "next/link";
+import { fetchPostJSON } from "../../utils/api-helpers";
 
 export default function MainArea() {
   const { tokens, user } = useContext(UserContext);
@@ -20,18 +21,13 @@ export default function MainArea() {
       return;
     }
     setLoader(true);
-    var raw = JSON.stringify({
-      description,
-      brandName: name,
-      toPredict: router.query.slug.replace(/([A-Z])/g, " $1").trim(),
-    });
     try {
-      const res = await fetch("http://127.0.0.1:5001/generator", {
-        method: "POST",
-        body: raw,
+      const res = await fetchPostJSON("/api/generate", {
+        description,
+        brandName: name,
+        toPredict: router.query.slug.replace(/([A-Z])/g, " $1").trim(),
       });
-      const data = await res.json();
-      setItems(data);
+      setItems(res);
       setLoader(false);
       await decrementToken(200, user.email);
     } catch (error) {
@@ -40,6 +36,7 @@ export default function MainArea() {
       console.log(error);
     }
   }
+
   return (
     <>
       <Link href="/home" passHref>
