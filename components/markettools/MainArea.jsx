@@ -16,10 +16,10 @@ export default function MainArea() {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(false);
   async function fetchData({ description, name }) {
-    if (tokens <= 0) {
-      toast.error("You need to recharge tokens");
-      return;
-    }
+    // if (tokens <= 0) {
+    //   toast.error("You need to recharge tokens");
+    //   return;
+    // }
     setLoader(true);
     try {
       const res = await fetchPostJSON("/api/generate", {
@@ -29,7 +29,7 @@ export default function MainArea() {
       });
       setItems(res);
       setLoader(false);
-      await decrementToken(200, user.email);
+      // await decrementToken(200, user.email);
     } catch (error) {
       setLoader(false);
       toast.error(error.message);
