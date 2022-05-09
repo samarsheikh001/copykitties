@@ -172,7 +172,15 @@ export default function MarketToolsNavigation(sidebarOpen, setSidebarOpen) {
                               key={index}
                               passHref
                             >
-                              <div className="block text-gray-600 w-full m-1 p-2 hover:bg-gray-200 rounded cursor-pointer text-sm ">
+                              {/* {route.asPath.split("/")[2] ==
+                                  childItem.title.split(" ").join("")} */}
+                              <div
+                                className={classNames(
+                                  "block text-gray-600 w-full m-1 p-2 hover:bg-gray-200 rounded cursor-pointer text-sm",
+                                  route.asPath.split("/")[2] ==
+                                  childItem.title.split(" ").join("") && "bg-gray-300"
+                                )}
+                              >
                                 {childItem.title}
                               </div>
                             </Link>
@@ -240,7 +248,7 @@ export default function MarketToolsNavigation(sidebarOpen, setSidebarOpen) {
                             <div
                               className={classNames(
                                 "block text-gray-600 w-full m-1 p-2 hover:bg-gray-200 rounded cursor-pointer text-sm",
-                                route.asPath.split("/").at(-1) ==
+                                route.asPath.split("/")[2] ==
                                   childItem.title.split(" ").join("")
                                   ? "bg-gray-300"
                                   : ""
