@@ -68,7 +68,7 @@ const marketingActions = [
   {
     svg: "/icons/quora.svg",
     name: "Quora Answers",
-    href: "#",
+    href: "QuoraAnswer",
     iconBackground: "bg-red-50",
     hoverBackground: "hover:bg-red-50",
     description: "Intelligent answers for tough questions.",
