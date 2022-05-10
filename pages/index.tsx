@@ -10,32 +10,7 @@ const stats = [
   { label: "Employees", value: "5" },
   { label: "Beta Users", value: "78" },
 ];
-const logos = [
-  {
-    name: "Transistor",
-    url: "https://tailwindui.com/img/logos/transistor-logo-gray-400.svg",
-  },
-  {
-    name: "Mirage",
-    url: "https://tailwindui.com/img/logos/mirage-logo-gray-400.svg",
-  },
-  {
-    name: "Tuple",
-    url: "https://tailwindui.com/img/logos/tuple-logo-gray-400.svg",
-  },
-  {
-    name: "Laravel",
-    url: "https://tailwindui.com/img/logos/laravel-logo-gray-400.svg",
-  },
-  {
-    name: "StaticKit",
-    url: "https://tailwindui.com/img/logos/statickit-logo-gray-400.svg",
-  },
-  {
-    name: "Workcation",
-    url: "https://tailwindui.com/img/logos/workcation-logo-gray-400.svg",
-  },
-];
+
 const footerNavigation = {
   main: [
     { name: "About", href: "#" },
@@ -119,8 +94,7 @@ function LandingPage() {
         <div className="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
           <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
             <div>
-              <SiteLogo />
-              <div className="mt-20">
+              <div className="mt-2">
                 <div>
                   <Link href="/pricing" passHref>
                     <div className="inline-flex space-x-4 cursor-pointer">
@@ -149,23 +123,7 @@ function LandingPage() {
                   </p>
                 </div>
 
-                <div className="flex space-x-4">
-                  {SignInButton(user)}
-                  {user ? (
-                    <div
-                      onClick={() => signOut()}
-                      className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4"
-                    >
-                      Logout
-                    </div>
-                  ) : (
-                    <Link href="/pricing" passHref>
-                      <div className="cursor-pointer rounded-md border border-transparent flex items-center text-center px-5 bg-black text-base font-medium text-white shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:px-10 my-4">
-                        Pricing
-                      </div>
-                    </Link>
-                  )}
-                </div>
+                <div className="inline-block">{SignInButton(user)}</div>
                 <div className="mt-6">
                   <div className="inline-flex items-center divide-x divide-gray-300">
                     <div className="flex-shrink-0 flex pr-5">
@@ -568,56 +526,39 @@ function LandingPage() {
 
 export default LandingPage;
 
-// Home.getLayout = (page) => {
-//   return (
-//     <PrimaryLayout>
-//       <SidebarLayout />
-//       {page}
-//     </PrimaryLayout>
-//   );
-// };
+import PrimaryLayout from "../components/layouts/primary/PrimaryLayout";
+LandingPage.getLayout = (page: any) => {
+  return <PrimaryLayout>{page}</PrimaryLayout>;
+};
 
 import { UserContext } from "../lib/context";
 import { useContext } from "react";
 import { UserInfo } from "firebase/auth";
 function SignInButton(user?: UserInfo | null | undefined) {
   const router = useRouter();
-  // const signInWithGoogle = async () => {
-  //   await signInWithPopup(auth, googleAuthProvider);
-  //   const usernameRef = doc(db, "users", auth.currentUser.uid);
-  //   const userSnap = await getDoc(usernameRef);
-  //   console.log(userSnap.data()?.username);
-
-  //   if (userSnap.data()?.username) {
-  //     router.push("/home");
-  //   }
-  // };
   return (
     <div className="py-4">
       {!user ? (
         <div>
           <div
-            onClick={() => signIn()}
-            className="flex items-center justify-center border rounded cursor-pointer"
+            onClick={async () => {
+              await signIn();
+              router.push("/home");
+            }}
+            className="whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-black hover:bg-gray-700 cursor-pointer"
           >
-            <div>
-              <span className="sr-only">Sign in with Google</span>
-              <img src={"/icons/google.svg"} className="m-2 h-12 w-12" />
-            </div>
-            <p className="font-medium text-gray-700 flex-1 text-center pr-2">
-              Sign in with Google
-            </p>
+            Start Writing For Free
           </div>
         </div>
       ) : (
         <Link href="/home" passHref>
-          <div className="flex items-center justify-center border rounded cursor-pointer">
-            <div>
-              <img src={user.photoURL!} className="m-2 h-12 w-12" />
+          <div>
+            <div className="whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-black hover:bg-gray-700 cursor-pointer">
+              Goto Home
             </div>
-            <p className="font-medium text-gray-700 flex-1 text-center pr-2">
-              Continue as {user.displayName}
-            </p>
+            <div className="p-2 text-gray-700">
+              You are logged in as {user.displayName}
+            </div>
           </div>
         </Link>
       )}
