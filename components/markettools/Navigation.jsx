@@ -35,6 +35,14 @@ const navigation = [
     ],
   },
   {
+    name: "Email",
+    children: [
+      { title: "Ad Email" },
+      { title: "Sales Email" },
+      { title: "Custom Email" },
+    ],
+  },
+  {
     name: "Blogs & Articles",
     children: [
       { title: "Article" },
@@ -178,7 +186,8 @@ export default function MarketToolsNavigation(sidebarOpen, setSidebarOpen) {
                                 className={classNames(
                                   "block text-gray-600 w-full m-1 p-2 hover:bg-gray-200 rounded cursor-pointer text-sm",
                                   route.asPath.split("/")[2] ==
-                                  childItem.title.split(" ").join("") && "bg-gray-300"
+                                    childItem.title.split(" ").join("") &&
+                                    "bg-gray-300"
                                 )}
                               >
                                 {childItem.title}
