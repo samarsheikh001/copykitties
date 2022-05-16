@@ -32,7 +32,7 @@ async function generator(
   toPredict: string
 ) {
   console.log(
-    `generate ${toPredict} for following brand description named ${brandName}:\n${description}.`
+    `generate '${toPredict}' for following brand description named ${brandName}:\n${description}.`
   );
 
   const response = await openai.createCompletion("text-davinci-002", {

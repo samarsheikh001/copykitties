@@ -22,6 +22,6 @@
     "**/*.ts",
     "**/*.tsx",
     "components/layouts/dashboard/DashboardLayout.jsx"
-, "components/layouts/primary/PrimaryLayout.jsx"  ],
+, "components/layouts/primary/PrimaryLayout.jsx", "components/editor/SlateComponents.jsx"  ],
   "exclude": ["node_modules"]
 }

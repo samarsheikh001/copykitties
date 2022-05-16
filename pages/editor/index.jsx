@@ -1,23 +1,13 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import TipTapEditor from "../../components/editor/TipTapEditor";
+
+import { useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+
+import SiteLogo from "../../components/common/SiteLogo";
 
 const user = {
   name: "Chelsea Hagon",
@@ -37,32 +27,68 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
+import EditorForm from "../../components/editor/EditorForm";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Editor() {
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: `
+      <h1>
+        Secret Nutella Recipe
+      </h1>
+      <h2>
+        Get back your husband with the help of secret nutella recipe
+      </h2>
+    `,
+  });
   return (
-    <div className="min-h-screen bg-white">
-      {/* <TopNav /> */}
-      <div className="py-6">
-        <div className="sm:px-6 lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="hidden lg:block lg:col-span-3 xl:col-span-2">
-            <nav
-              aria-label="Sidebar"
-              className="sticky top-6 divide-y divide-gray-300 bg-yellow-500"
-            >
-              <div>Yellow</div>
-              {/* Your content */}
-            </nav>
+    <div className="h-screen">
+      <TopNav />
+      <button
+        onClick={async () => {
+          const text = "samar is a good boy";
+          // console.log(editor.state.selection.from);
+          // console.log(editor.state.selection.to);
+          // console.log(
+          //   editor.state.doc.textBetween(
+          //     editor.state.selection.from,
+          //     editor.state.selection.to
+          //   )
+          // );
+          const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+          for (const word of text.split("")) {
+            editor.commands.insertContentAt(editor.state.selection.to, word);
+            await delay(10);
+          }
+          // editor.commands.insertContentAt(editor.state.selection.to, text);
+        }}
+        className="p-4 bg-black text-white"
+      >
+        Text
+      </button>
+      <div className="h-full">
+        <div className="lg:grid lg:grid-cols-12 h-full">
+          <div className="hidden lg:block lg:col-span-4 xl:col-span-2 shadow">
+            <div aria-label="Sidebar" className="sticky divide-y h-full">
+              <EditorForm
+                handleData={(data, tagData) => {
+                  console.log(data);
+                }}
+              />
+            </div>
           </div>
-          <main className="lg:col-span-9 xl:col-span-6 bg-red-500">
-            {/* Your content */}
-            <div>RED</div>
+          <main className="lg:col-span-8 xl:col-span-6 h-full">
+            {/* <SlateEditor /> */}
+            <TipTapEditor editor={editor} />
           </main>
           <aside className="hidden xl:block xl:col-span-4 bg-blue-500">
-            <div className="sticky top-6 space-y-4">{/* Your content */}
-            <div>Blue</div>
+            <div className="sticky top-6 space-y-4">
+              {/* Your content */}
+              <div>Blue</div>
             </div>
           </aside>
         </div>

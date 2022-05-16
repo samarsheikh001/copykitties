@@ -1,23 +1,35 @@
 .ProseMirror > * + * {
-  margin: 0.75em;
   @apply decoration-double;
+}
+.ProseMirror {
+  height: 100%;
+  width:100%;
+  @apply border shadow-xl sm:p-20 p-4;
 }
 
 .ProseMirror-focused {
-  @apply focus:border-none border-red-500;
+  @apply outline-none;
 }
-.ProseMirror ul,
-.ProseMirror ol {
+.ProseMirror ul {
   @apply list-disc;
   padding: 0 1rem;
 }
 
+.ProseMirror ol {
+  @apply list-decimal;
+  padding: 0 1rem;
+}
+
 .ProseMirror h1 {
-  font-size: 2em;
+  font-size: 2.5rem;
 }
 
 .ProseMirror h2 {
-  font-size: 1.5em;
+  font-size: 1.8rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.5rem;
 }
 
 .ProseMirror code {
