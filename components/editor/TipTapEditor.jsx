@@ -4,9 +4,8 @@ import TipTapToolBar from "./TipTapToolBar";
 
 export default function TipTapEditor({ editor }) {
   return (
-    <div className="flex flex-col h-full">
-      <TipTapToolBar editor={editor} />
-      <EditorContent editor={editor} className="flex-1" height={50} />
+    <div className="h-full">
+      <EditorContent editor={editor} className="h-full" />
     </div>
   );
 }
