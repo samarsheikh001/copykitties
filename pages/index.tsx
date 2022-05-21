@@ -90,7 +90,7 @@ function LandingPage() {
   return (
     <>
       <Head>
-        <title>Copykittiess - The cheapest AI writing assistant tool</title>
+        <title>The cheapest AI writing assistant tool</title>
         <meta
           content="Copykitties is an ai powered copywriter that helps you create compelling, SEO-friendly content for your website."
           name="description"
