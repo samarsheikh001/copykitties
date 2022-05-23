@@ -4,7 +4,7 @@
 .ProseMirror {
   height: 100%;
   width:100%;
-  @apply border sm:px-20 sm:py-10 p-4 overflow-auto;
+  @apply border sm:p-20 p-4 overflow-auto;
 }
 
 .ProseMirror-focused {

@@ -5,6 +5,16 @@
 * {
   font-family: "DM Sans", sans-serif;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  @apply text-white bg-gray-500;
+}
+
+::selection {
+  @apply text-white bg-gray-500;
+}
+
 .loading-cat {
   position: relative;
   width: 300px;

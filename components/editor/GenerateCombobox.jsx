@@ -2,51 +2,43 @@
 import { useState } from "react";
 import { Combobox } from "@headlessui/react";
 
-const toGenerate = [
-  { id: 1, name: "Title" },
-  { id: 2, name: "Outline" },
-  { id: 3, name: "Introduction" },
-  { id: 4, name: "Benedict Kessler" },
-  { id: 5, name: "Conclusion" },
-];
+export default function GenerateCombobox({selectedToGenerate, setselectedToGenerate, toGenerate}) {
 
-export default function GenerateCombobox() {
-  const [selectedPerson, setSelectedPerson] = useState(toGenerate[0]);
   const [query, setQuery] = useState("");
 
-  const filteredtoGenerate =
+  const filteredToGenerate =
     query === ""
       ? toGenerate
-      : toGenerate.filter((person) => {
-          return person.name.toLowerCase().includes(query.toLowerCase());
+      : toGenerate.filter((toGenerate) => {
+          return toGenerate.name.toLowerCase().includes(query.toLowerCase());
         });
 
   return (
-    <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+    <Combobox value={selectedToGenerate} onChange={setselectedToGenerate}>
       <Combobox.Label className="block text-sm font-medium text-gray-700 py-1">
         To Generate
       </Combobox.Label>
       <Combobox.Input
         className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
         onChange={(event) => setQuery(event.target.value)}
-        displayValue={(person) => person.name}
+        displayValue={(toGenerate) => toGenerate.name}
       />
-      <Combobox.Options>
+      <Combobox.Options className="border rounded shadow-xl text-base">
         {query.length > 0 && (
           <Combobox.Option
-            className="shadow p-2 rounded border-2 border-black my-1"
+            className="rounded p-2 cursor-pointer hover:bg-gray-200"
             value={{ id: null, name: query }}
           >
             Create "{query}"
           </Combobox.Option>
         )}
-        {filteredtoGenerate.map((person) => (
+        {filteredToGenerate.map((toGenerate) => (
           <Combobox.Option
-            className="rounded p-2 border-2 border-black my-1 bg-gray-200 cursor-pointer"
-            key={person.id}
-            value={person}
+            className="rounded p-2 cursor-pointer hover:bg-gray-200"
+            key={toGenerate.id}
+            value={toGenerate}
           >
-            {person.name}
+            {toGenerate.name}
           </Combobox.Option>
         ))}
       </Combobox.Options>
