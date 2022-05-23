@@ -18,44 +18,11 @@ export default function Editor() {
     <>
       <TopNav />
       <div className="h-screen lg:grid lg:grid-cols-12">
-        {/* <button
-          onClick={async () => {
-            const data = await fetchPostJSON("/api/generate/compose", {
-              name: "Samar",
-            });
-            console.log(data);
-          }}
-          className="p-4 bg-black text-white rounded m-2"
-        >
-          HEY
-        </button> */}
-        {/* <button
-        onClick={async () => {
-          const text = "samar is a good boy";
-          console.log(editor.state.selection.from);
-          console.log(editor.state.selection.to);
-          console.log(
-            editor.state.doc.textBetween(
-              editor.state.selection.from,
-              editor.state.selection.to
-            )
-          // );
-          const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-          for (const word of text.split("")) {
-            editor.commands.insertContentAt(editor.state.selection.to, word);
-            await delay(10);
-          }
-          // editor.commands.insertContentAt(editor.state.selection.to, text);
-        }}
-        className="p-4 bg-black text-white"
-      >
-        Text
-      </button> */}
         <div className="hidden lg:block lg:col-span-4 xl:col-span-2 shadow border-t sticky top-0 h-full">
           <div aria-label="Sidebar" className="divide-y h-full">
             <EditorForm
+              editor={editor}
               handleData={async ({ data, tagData, selectedToGenerate }) => {
-                console.log(selectedToGenerate);
                 const reponse = await fetchPostJSON("/api/generate/helper", {
                   ...data,
                   keywords: JSON.stringify(tagData),
@@ -64,28 +31,8 @@ export default function Editor() {
                 console.log(reponse[0].text);
                 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
                 for (const word of reponse[0].text.split("\n")) {
-                  // editor.commands.insertContentAt(
-                  //   editor.state.selection.to,
-                  //   word
-                  // );
                   editor.commands.insertContent(`<p>${word}</p>`);
                   await delay(100);
-                }
-              }}
-              compose={async () => {
-                const { from, to } = editor.state.selection;
-                const selectedText = editor.state.doc.textBetween(from, to);
-                if (selectedText) {
-                  const reponse = await fetchPostJSON("/api/generate/compose", {
-                    prompt: selectedText,
-                  });
-                  console.log(reponse[0].text);
-                  const delay = (ms) =>
-                    new Promise((res) => setTimeout(res, ms));
-                  for (const word of reponse[0].text.split("\n")) {
-                    editor.commands.insertContent(`<p>${word}</p>`);
-                    await delay(100);
-                  }
                 }
               }}
             />
@@ -105,6 +52,7 @@ export default function Editor() {
     </>
   );
 }
+
 function TopNav() {
   return (
     <div className="m-2 flex items-center">
@@ -136,8 +84,6 @@ function RightBar({ editor }) {
           <div className="text-center border py-1">
             <div className="text-gray-400">Words</div>
             <div className="font-bold">
-              {" "}
-              {/* {editor?.storage.characterCount.words()} */}
               {editor?.storage.characterCount.words()}
             </div>
           </div>
