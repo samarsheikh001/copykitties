@@ -9,7 +9,6 @@ import SiteLogo from "../../components/common/SiteLogo";
 import EditorForm from "../../components/editor/EditorForm";
 import { useState } from "react";
 
-import { fetchPostJSON } from "../../utils/api-helpers";
 export default function Editor() {
   const editor = useEditor({
     extensions: [StarterKit, CharacterCount.configure({})],
@@ -20,22 +19,7 @@ export default function Editor() {
       <div className="h-screen lg:grid lg:grid-cols-12">
         <div className="hidden lg:block lg:col-span-4 xl:col-span-2 shadow border-t sticky top-0 h-full">
           <div aria-label="Sidebar" className="divide-y h-full">
-            <EditorForm
-              editor={editor}
-              handleData={async ({ data, tagData, selectedToGenerate }) => {
-                const reponse = await fetchPostJSON("/api/generate/helper", {
-                  ...data,
-                  keywords: JSON.stringify(tagData),
-                  toGenerate: selectedToGenerate.name,
-                });
-                console.log(reponse[0].text);
-                const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-                for (const word of reponse[0].text.split("\n")) {
-                  editor.commands.insertContent(`<p>${word}</p>`);
-                  await delay(100);
-                }
-              }}
-            />
+            <EditorForm editor={editor} />
           </div>
         </div>
         <main className="lg:col-span-8 xl:col-span-7 h-full overflow-hidden">

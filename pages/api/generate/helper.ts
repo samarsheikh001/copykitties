@@ -5,12 +5,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { need, description, tone, keywords, toGenerate } = req.body;
+    const { title, description, tone, keywords, toGenerate } = req.body;
     try {
-      console.log(`${need}\n${description}}\nkeywords: ${keywords}\nGenerate ${toGenerate}.`);
+      console.log(`${title}\n${description}}\nkeywords: ${keywords}\nGenerate ${toGenerate}.`);
       
       const response = await openai.createCompletion("text-davinci-002", {
-        prompt: `${need}\n${description}}\nkeywords: ${keywords}\nGenerate ${toGenerate}.`,
+        prompt: `${title}\n${description}}\nkeywords: ${keywords}\nGenerate ${toGenerate}.`,
         temperature: 0.7,
         max_tokens: 256,
         top_p: 1,

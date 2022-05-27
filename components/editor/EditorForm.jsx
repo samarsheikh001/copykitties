@@ -10,11 +10,11 @@ const toGenerate = [
   { id: 1, name: "Titles" },
   { id: 2, name: "Outline" },
   { id: 3, name: "Introduction" },
-  { id: 4, name: "blog" },
+  { id: 4, name: "Blog" },
   { id: 5, name: "Conclusion" },
 ];
 
-export default function EditorForm({ handleData, editor }) {
+export default function EditorForm({ editor }) {
   const [tagData, setTagData] = useState([]);
   const [selectedToGenerate, setselectedToGenerate] = useState(toGenerate[0]);
   const {
@@ -23,9 +23,10 @@ export default function EditorForm({ handleData, editor }) {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => handleData({ data, tagData, selectedToGenerate });
+  const onSubmit = (data) => generate({ data, tagData, selectedToGenerate });
 
   const [composeLoading, setComposeLoading] = useState(false);
+  const [generateLoading, setGenerateLoading] = useState(false);
 
   async function compose() {
     setComposeLoading(true);
@@ -47,103 +48,121 @@ export default function EditorForm({ handleData, editor }) {
     setComposeLoading(false);
   }
 
-  async function generate() {}
+  async function generate({ data, tagData, selectedToGenerate }) {
+    setGenerateLoading(true);
+    const reponse = await fetchPostJSON("/api/generate/helper", {
+      ...data,
+      keywords: JSON.stringify(tagData),
+      toGenerate: selectedToGenerate.name,
+    });
+    console.log(reponse[0].text);
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+    for (const word of reponse[0].text.split("\n")) {
+      editor.commands.insertContent(`<p>${word}</p>`);
+      await delay(100);
+    }
+    setGenerateLoading(false);
+  }
 
   return (
     <div className="px-4 py-6 h-screen overflow-y-auto space-y-2">
-        <div className="border-2 rounded p-2">
-          {/* <div className="font-bold border-b inline-block mb-2">Details</div> */}
-          <div>
-            <label
-              htmlFor="need"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Title
-            </label>
-            <div className="mt-1">
-              <textarea
-                rows={4}
-                name="need"
-                id="need"
-                maxLength={150}
-                className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder="I want to write an article/blog about copykitties."
-                {...register("need")}
-              />
-            </div>
-            <div className="float-right text-gray-400 text-xs">
-              {watch("need")?.length}/150
-            </div>
+      <div className="border-2 rounded p-2">
+        {/* <div className="font-bold border-b inline-block mb-2">Details</div> */}
+        <div>
+          <label
+            htmlFor="title"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Title
+          </label>
+          <div className="mt-1">
+            <textarea
+              rows={4}
+              name="title"
+              id="title"
+              maxLength={150}
+              className={classNames(
+                "shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                errors.title &&
+                  "border-red-500 focus:ring-red-500 focus:border-red-500"
+              )}
+              placeholder="Blog post on crypto / Marketing email / Report on photosynthesis."
+              {...register("title", { required: true })}
+            />
           </div>
-          <div className="mt-4">
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Description / Brief
-            </label>
-            <div className="mt-1">
-              <textarea
-                rows={3}
-                name="description"
-                id="description"
-                className={classNames(
-                  "shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md",
-                  errors.description &&
-                    "border-red-500 focus:ring-red-500 focus:border-red-500"
-                )}
-                maxLength={350}
-                placeholder="It is an ai copywriter tool"
-                {...register("description", { required: true })}
-              />
-            </div>
-            <div className="float-right text-gray-400 text-xs">
-              {watch("description")?.length}/350
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <label
-              htmlFor="tone"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Tone of voice
-            </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                name="tone"
-                id="tone"
-                className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder="Friendly"
-                {...register("tone")}
-              />
-            </div>
-          </div>
-          <div className="mt-4">
-            <label
-              htmlFor="keywords"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Keywords
-            </label>
-            <div className="mt-1">
-              <TagInput tagData={tagData} setTagData={setTagData} />
-            </div>
+          <div className="float-right text-gray-400 text-xs">
+            {watch("title")?.length}/150
           </div>
         </div>
+        <div className="mt-4">
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Description / Brief
+          </label>
+          <div className="mt-1">
+            <textarea
+              rows={3}
+              name="description"
+              id="description"
+              className={classNames(
+                "shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                errors.description &&
+                  "border-red-500 focus:ring-red-500 focus:border-red-500"
+              )}
+              maxLength={350}
+              placeholder="I want to write about the latest in cryptocurrency news and analysis."
+              {...register("description", { required: true })}
+            />
+          </div>
+          <div className="float-right text-gray-400 text-xs">
+            {watch("description")?.length}/350
+          </div>
+        </div>
+      </div>
 
       <div className="border-2 p-2 rounded">
-          <GenerateCombobox
-            selectedToGenerate={selectedToGenerate}
-            setselectedToGenerate={setselectedToGenerate}
-            toGenerate={toGenerate}
-          />
+        <GenerateCombobox
+          selectedToGenerate={selectedToGenerate}
+          setselectedToGenerate={setselectedToGenerate}
+          toGenerate={toGenerate}
+        />
+        <div className="mt-4">
+          <label
+            htmlFor="tone"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Tone of voice
+          </label>
+          <div className="mt-1">
+            <input
+              type="text"
+              name="tone"
+              id="tone"
+              className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="Friendly"
+              {...register("tone")}
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <label
+            htmlFor="keywords"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Keywords
+          </label>
+          <div className="mt-1">
+            <TagInput tagData={tagData} setTagData={setTagData} />
+          </div>
+        </div>
         <button
           onClick={handleSubmit(onSubmit)}
           className="bg-black block w-full text-white px-4 py-2 mt-2 rounded"
         >
-          Generate <span className="bg-gray-600 p-1 rounded ml-1">Ctrl+K</span>
+          Generate{" "}
+          {generateLoading && LoadingIndicator({ color: "text-white" })}
         </button>
       </div>
 
