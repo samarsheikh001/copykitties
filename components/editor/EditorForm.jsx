@@ -168,7 +168,7 @@ export default function EditorForm({ editor }) {
 
       <div className="border-2 p-2 rounded">
         <div className="p-1 mb-1 text-gray-500 bg-gray-200 text-sm rounded">
-          Select content in editor then click compose
+          Select text in editor then click compose
         </div>
         <button
           onClick={compose}
