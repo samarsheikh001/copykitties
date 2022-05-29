@@ -1,4 +1,13 @@
-const a =
-  "Prices are per 1,000 tokens. You can think of tokens as pieces of words, where 1,000 tokens is about 750 words. This paragraph is 35 tokens.";
+const text = `1.2.3.4.5.6.7.8.9.10.11`;
 
-console.log(a.length / 4);
+console.log(text.split(".").length);
+
+for (let token = 0; token < text.split(".").length; token = token + 5) {
+  console.log(
+    text
+      .split(".")
+      .slice(token, token + 5)
+      .join(".") + "."
+  );
+
+}
