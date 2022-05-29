@@ -21,13 +21,15 @@ export default async function handler(
 }
 
 async function rewrite(tokens: string) {
+  console.log(tokens);
   const response = await openai.createCompletion("text-davinci-002", {
-    prompt: tokens,
-    temperature: 0.7,
+    prompt: `Rewrite the paragraph.\n${tokens}`,
+    temperature: 0.5,
     max_tokens: 256,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
   });
+  console.log(response.data.choices![0]);
   return response.data.choices![0];
 }

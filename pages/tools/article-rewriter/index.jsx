@@ -28,11 +28,11 @@ export default function ArticleRewriter(params) {
   async function rewriteSentence({ text }) {
     setTextArray([]);
     setLoading(true);
-    for (let token = 0; token < text.split(".").length - 1; token = token + 1) {
+    for (let token = 0; token < text.split(".").length - 5; token = token + 5) {
       const splittedText =
         text
           .split(".")
-          .slice(token, token + 1)
+          .slice(token, token + 5)
           .join(".") + ".";
       const data = await fetchPostJSON("/api/generate/rewrite", {
         text: splittedText,
