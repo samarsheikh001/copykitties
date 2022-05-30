@@ -21,23 +21,22 @@ export default function ArticleRewriter(params) {
 
   const onSubmit = async ({ source, title }) => {
     const { text } = await extractText({ source, title });
-    // rewriteSentence({ text });
     rewriteSentence({ text });
   };
 
   async function rewriteSentence({ text }) {
     setTextArray([]);
     setLoading(true);
-    for (let token = 0; token < text.split(".").length - 5; token = token + 5) {
+    for (let token = 0; token < text.split(".").length; token = token + 5) {
       const splittedText =
         text
           .split(".")
           .slice(token, token + 5)
-          .join(".") + ".";
+          .join(".");
+      console.log(splittedText);
       const data = await fetchPostJSON("/api/generate/rewrite", {
         text: splittedText,
       });
-      // console.log(data);
       setTextArray((prevArray) => [
         ...prevArray,
         {
