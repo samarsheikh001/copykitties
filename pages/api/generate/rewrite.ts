@@ -23,7 +23,7 @@ export default async function handler(
 async function rewrite(tokens: string) {
   console.log(tokens);
   const response = await openai.createCompletion("text-davinci-002", {
-    prompt: `Rephrase this paragraph:\n\n${tokens}`,
+    prompt: `Rephrase the given text:\n\n${tokens}`,
     temperature: 0,
     max_tokens: 300,
     top_p: 1,
