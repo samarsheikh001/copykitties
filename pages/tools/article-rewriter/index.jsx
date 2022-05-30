@@ -27,15 +27,14 @@ export default function ArticleRewriter(params) {
   async function rewriteSentence({ text }) {
     setTextArray([]);
     setLoading(true);
-    for (let token = 0; token < text.split(".").length; token = token + 5) {
-      const splittedText =
-        text
-          .split(".")
-          .slice(token, token + 5)
-          .join(".");
+    for (let token = 0; token < text.split(".").length - 1; token = token + 5) {
+      const splittedText = text
+        .split(".")
+        .slice(token, token + 5)
+        .join(".");
       console.log(splittedText);
       const data = await fetchPostJSON("/api/generate/rewrite", {
-        text: splittedText,
+        text: splittedText + ".",
       });
       setTextArray((prevArray) => [
         ...prevArray,
@@ -54,7 +53,6 @@ export default function ArticleRewriter(params) {
       <div className="p-4 text-center">
         <h2 className="text-4xl font-bold">Rewrite articles with AI</h2>
         <p>The smartest tool to rewrite articles from scratch.</p>
-        <button className="px-2 bg-gray-900 text-white rounded">Test</button>
       </div>
 
       <div className="shadow-xl border rounded m-4 p-4 max-w-lg mx-auto">
@@ -95,7 +93,6 @@ async function extractText({ source, title }) {
 
     var raw = JSON.stringify({
       url: source,
-      // url: "https://eand.co/the-age-of-extinction-is-here-some-of-us-just-dont-know-it-yet-7001f5e0c79a",
     });
 
     var requestOptions = {
