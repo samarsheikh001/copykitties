@@ -1,10 +1,118 @@
-const text = `A promise is an object that represents the result of an asynchronous operation. Promises are used to handle asynchronous operations in a more synchronous way. When an asynchronous operation is started, a promise is created. The promise is then waiting for the asynchronous operation to finish. Once the asynchronous operation finishes, the promise is either resolved ( fulfilled) or rejected. A promise is an object that represents the result of an asynchronous operation. Promises are used to handle asynchronous operations in a more synchronous way. When an asynchronous operation is started, a promise is created. The promise is then waiting for the asynchronous operation to finish. Once the asynchronous operation finishes, the promise is either resolved ( fulfilled) or rejected. Water is good.`;
-
-console.log(text.split(".").length);
-for (let token = 0; token < text.split(".").length - 1; token = token + 5) {
-  const splittedText = text
-    .split(".")
-    .slice(token, token + 5)
-    .join(".");
-  console.log("text: ", splittedText);
+const marketingTools = {
+  'google-ads-headline': {
+    heading: 'Google Ads Headline',
+    subHeading:
+      "Create high converting copy for the 'Headline' section of your Google Ads.",
+    icon: 'GoogleIcon',
+    textFields: [
+      {
+        title: 'Company/Product Name',
+        name: 'name',
+        isTextarea: false,
+        placeholder: 'Product Name',
+      },
+      {
+        title: 'Product Description Name',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'Product Description',
+      },
+    ],
+  },
+  'google-ads-description': {
+    heading: 'Google Ads Description',
+    subHeading:
+      "Create high converting copy for the 'Description' section of your Google Ads.",
+    icon: 'GoogleIcon',
+    textFields: [
+      {
+        title: 'Company/Product Name',
+        name: 'name',
+        isTextarea: false,
+        placeholder: 'Product Name',
+      },
+      {
+        title: 'Product Description Name',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'Product Description',
+      },
+    ],
+  },
+  'product-description': {
+    heading: 'Product Description',
+    subHeading: 'Create description for your Product.',
+    icon: 'ProductIcon',
+    textFields: [
+      {
+        title: 'Company/Product Name',
+        name: 'name',
+        isTextarea: false,
+        placeholder: 'Product Name',
+      },
+      {
+        title: 'Product Description Name',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'Product Description',
+      },
+    ],
+  },
+  'facebook-listicle': {
+    heading: 'Facebook Listicle',
+    subHeading: 'Create facebook listicle.',
+    icon: 'FacebookIcon',
+    textFields: [
+      {
+        title: 'Company/Product Name',
+        name: 'name',
+        isTextarea: false,
+        placeholder: 'Product Name',
+      },
+      {
+        title: 'Product Description Name',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'Product Description',
+      },
+    ],
+  },
+  'facebook-primary-text': {
+    heading: 'Facebook Primary Text',
+    subHeading: 'Create facebook primary texts.',
+    icon: 'FacebookIcon',
+    textFields: [
+      {
+        title: 'Company/Product Name',
+        name: 'name',
+        isTextarea: false,
+        placeholder: 'Product Name',
+      },
+      {
+        title: 'Product Description Name',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'Product Description',
+      },
+    ],
+  },
+};
+const result = [];
+for (const a of Object.keys(marketingTools)) {
+  result.push({
+    href: a,
+    title: marketingTools[a].heading,
+    icon: marketingTools[a].icon,
+  });
 }
+
+console.log(result);
+
+// const filter = result.filter((item) =>
+//   item.title.toLowerCase().includes('goo'.toLowerCase()),
+// );
+// console.log(
+//   result.filter((item) =>
+//     item.title.toLowerCase().includes('goo'.toLowerCase()),
+//   ),
+// );
