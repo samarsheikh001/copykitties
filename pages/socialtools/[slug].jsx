@@ -6,7 +6,7 @@ import FacebookIcon from '/public/icons/facebook.svg';
 import EmptyIcon from '/public/icons/empty.svg';
 
 import FormBuilder from '../../components/common/FormBuilder';
-import CatLoader from '../../components/common/loader/Cat/CatLoader';
+import CatLoader from '../../components/common/loader/cat/CatLoader';
 
 import { useRouter } from 'next/router';
 import { useState } from 'react';
