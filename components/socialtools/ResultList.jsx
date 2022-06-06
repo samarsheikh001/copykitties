@@ -1,4 +1,4 @@
-import ResultCard from '../../components/cards/ResultCard'
+import ResultCard from '../cards/ResultCard'
 
 export default function ResultList(items) {
   return (

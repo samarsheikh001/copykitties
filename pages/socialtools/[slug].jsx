@@ -1,9 +1,12 @@
-import MarketingToolsNav from '../../components/layouts/marketingtools/MarketingToolsNav';
+import MarketingToolsNav from '../../components/layouts/socialtools/SocialToolsNav';
 import GoogleIcon from '/public/icons/google.svg';
 import ProductIcon from '/public/icons/product.svg';
 import FacebookIcon from '/public/icons/facebook.svg';
 
+import EmptyIcon from '/public/icons/empty.svg';
+
 import FormBuilder from '../../components/common/FormBuilder';
+
 
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -127,7 +130,7 @@ export default function MarketingTools(params) {
     setResultsArray(res);
   }
   return (
-    <div className="h-full overflow-hidden">
+    <div className="h-full sm:overflow-hidden">
       <div className="flex items-start space-x-4 border-b p-4 sm:items-center">
         <div className="flex flex-1 items-start space-x-4 sm:items-center">
           <div className="rounded-full p-1 sm:p-3">
@@ -151,15 +154,15 @@ export default function MarketingTools(params) {
         </button>
       </div>
 
-      <div className="flex h-full flex-col md:flex-row ">
-        <div className="max-w-md flex-auto border-r">
+      <div className="grid h-full grid-cols-1 sm:grid-cols-5">
+        <div className="col-span-2 border-r">
           <FormBuilder
             textFields={marketingTools[router.query.slug].textFields}
             onSubmit={onSubmitData}
           />
         </div>
 
-        <div className="h-full flex-1 overflow-hidden p-2 md:p-0">
+        <div className="col-span-3 h-full p-2 sm:overflow-hidden md:p-0 ">
           <div className="flex space-x-2 border-b text-sm text-gray-800">
             <div className="flex items-center bg-gray-200 p-2">
               <span className="material-symbols-outlined pr-1 text-sm">
@@ -175,8 +178,23 @@ export default function MarketingTools(params) {
             </div>
           </div>
 
-          <div className="h-full overflow-y-auto pb-52">
-            <ul className="space-y-4 p-2">
+          <div className="h-full overflow-y-auto">
+            {resultsArray.length == 0 && (
+              <div
+                className="flex
+              h-full
+              flex-col
+              items-center
+              pt-20
+            "
+              >
+                <EmptyIcon className="w-44" />
+                <div className="py-2 text-gray-700">
+                  {"You haven't generated copy yet"}
+                </div>
+              </div>
+            )}
+            <ul className="space-y-4 p-2 sm:pb-56">
               {resultsArray.map((result, index) => {
                 return <ResultCard key={index} text={result.text} />;
               })}

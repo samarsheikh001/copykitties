@@ -1,4 +1,4 @@
-import MarketToolsNavigation from "../../markettools/Navigation";
+import MarketToolsNavigation from "../../socialtools/Navigation";
 import SiteLogo from "../../common/SiteLogo";
 
 import { useState } from "react";

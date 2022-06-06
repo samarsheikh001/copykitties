@@ -1,85 +1,131 @@
-import DashboardLayout from "../components/layouts/dashboard/DashboardLayout";
-import Image from "next/image";
-import { classNames } from "/lib/classnames";
-import { NewspaperIcon, PencilAltIcon } from "@heroicons/react/outline";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../lib/context";
-import AuthCheck from "../components/common/AuthCheck";
+import DashboardLayout from '../components/layouts/dashboard/DashboardLayout';
+import Image from 'next/image';
+import { classNames } from '/lib/classnames';
+import { NewspaperIcon, PencilAltIcon } from '@heroicons/react/outline';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../lib/context';
+import AuthCheck from '../components/common/AuthCheck';
 
 const actions = [
   {
     icon: NewspaperIcon,
-    name: "Blog Post",
-    href: "#",
-    iconForeground: "text-blue-700",
-    iconBackground: "bg-blue-50",
-    hoverBackground: "hover:bg-blue-50",
-    description: "Let AI Help You Write Better, More Engaging Blog Posts",
+    name: 'Blog Post',
+    href: '#',
+    iconForeground: 'text-blue-700',
+    iconBackground: 'bg-blue-50',
+    hoverBackground: 'hover:bg-blue-50',
+    description: 'Let AI Help You Write Better, More Engaging Blog Posts',
     comingSoon: true,
   },
   {
     icon: PencilAltIcon,
-    name: "Article",
-    href: "Article",
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50",
-    hoverBackground: "hover:bg-purple-50",
+    name: 'Article',
+    href: 'Article',
+    iconForeground: 'text-purple-700',
+    iconBackground: 'bg-purple-50',
+    hoverBackground: 'hover:bg-purple-50',
     description:
-      "The easiest way to write better articles for School or Work without plagiarism",
+      'The easiest way to write better articles for School or Work without plagiarism',
   },
 ];
 
-const marketingActions = [
+// const socialMediaAndAds = [
+//   {
+//     svg: "/icons/playstore.svg",
+//     name: "App publish content",
+//     href: "AppTitle",
+//     iconBackground: "bg-fuchsia-50",
+//     hoverBackground: "hover:bg-fuchsia-50",
+//     description:
+//       "Easily create descriptions, titles, and meta keywords for your app in seconds.",
+//   },
+//   {
+//     svg: "/icons/google.svg",
+//     name: "Google ads Headline",
+//     href: "google-ads-headline",
+//     iconBackground: "bg-teal-50",
+//     hoverBackground: "hover:bg-teal-50",
+//     description:
+//       "Create high converting copy for the 'Headlines' section of your Google Ads.",
+//   },
+//   {
+//     svg: "/icons/youtube.svg",
+//     name: "Video Titles",
+//     href: "VideoTitle",
+//     iconBackground: "bg-red-50",
+//     hoverBackground: "hover:bg-red-50",
+//     description:
+//       "Create engaging, click-worthy titles for your videos that will rank on Youtube.",
+//   },
+//   {
+//     svg: "/icons/instagram.svg",
+//     name: "Photo Post Captions",
+//     href: "SocialMediaCaption",
+//     iconBackground: "bg-purple-50",
+//     hoverBackground: "hover:bg-purple-50",
+//     description: "Write catchy captions for your Instagram posts",
+//   },
+//   {
+//     svg: "/icons/quora.svg",
+//     name: "Quora Answers",
+//     href: "QuoraAnswer",
+//     iconBackground: "bg-red-50",
+//     hoverBackground: "hover:bg-red-50",
+//     description: "Intelligent answers for tough questions.",
+//   },
+//   {
+//     svg: "/icons/chat.svg",
+//     name: "Short Social Post",
+//     href: "ShortSocialPost",
+//     iconBackground: "bg-purple-50",
+//     hoverBackground: "hover:bg-purple-50",
+//     description: "Generate short social posts under 140 characters.",
+//   },
+// ];
+
+const socialMediaAndAds = [
   {
-    svg: "/icons/playstore.svg",
-    name: "App publish content",
-    href: "AppTitle",
-    iconBackground: "bg-fuchsia-50",
-    hoverBackground: "hover:bg-fuchsia-50",
+    svg: '/icons/playstore.svg',
+    name: 'App publish content',
+    href: 'AppTitle',
+    iconBackground: 'bg-fuchsia-50',
+    hoverBackground: 'hover:bg-fuchsia-50',
     description:
-      "Easily create descriptions, titles, and meta keywords for your app in seconds.",
+      'Easily create descriptions, titles, and meta keywords for your app in seconds.',
   },
   {
-    svg: "/icons/google.svg",
-    name: "Google ads Headline",
-    href: "GoogleAdsHeadline",
-    iconBackground: "bg-teal-50",
-    hoverBackground: "hover:bg-teal-50",
+    svg: '/icons/google.svg',
+    name: 'Google ads Headline',
+    href: 'google-ads-headline',
+    iconBackground: 'bg-teal-50',
+    hoverBackground: 'hover:bg-teal-50',
     description:
       "Create high converting copy for the 'Headlines' section of your Google Ads.",
   },
   {
-    svg: "/icons/youtube.svg",
-    name: "Video Titles",
-    href: "VideoTitle",
-    iconBackground: "bg-red-50",
-    hoverBackground: "hover:bg-red-50",
+    svg: '/icons/google.svg',
+    name: 'Google ads Description',
+    href: 'google-ads-description',
+    iconBackground: 'bg-teal-50',
+    hoverBackground: 'hover:bg-teal-50',
     description:
-      "Create engaging, click-worthy titles for your videos that will rank on Youtube.",
+      "Create high converting copy for the 'Description' section of your Google Ads.",
   },
   {
-    svg: "/icons/instagram.svg",
-    name: "Photo Post Captions",
-    href: "SocialMediaCaption",
-    iconBackground: "bg-purple-50",
-    hoverBackground: "hover:bg-purple-50",
-    description: "Write catchy captions for your Instagram posts",
+    svg: '/icons/facebook.svg',
+    name: 'Facebook Listicle',
+    href: 'facebook-listicle',
+    iconBackground: 'bg-blue-50',
+    hoverBackground: 'hover:bg-blue-50',
+    description: 'Create facebook listicle.',
   },
   {
-    svg: "/icons/quora.svg",
-    name: "Quora Answers",
-    href: "QuoraAnswer",
-    iconBackground: "bg-red-50",
-    hoverBackground: "hover:bg-red-50",
-    description: "Intelligent answers for tough questions.",
-  },
-  {
-    svg: "/icons/chat.svg",
-    name: "Short Social Post",
-    href: "ShortSocialPost",
-    iconBackground: "bg-purple-50",
-    hoverBackground: "hover:bg-purple-50",
-    description: "Generate short social posts under 140 characters.",
+    svg: '/icons/facebook.svg',
+    name: 'Facebook Primary Text',
+    href: 'facebook-primary-text',
+    iconBackground: 'bg-blue-50',
+    hoverBackground: 'hover:bg-blue-50',
+    description: 'Create facebook primary texts.',
   },
 ];
 
@@ -107,7 +153,7 @@ export default function Home() {
     <AuthCheck>
       <h1 className="sr-only">Profile</h1>
       {/* Main 3 column grid */}
-      <div className="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
+      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
         {/* Left column */}
         <div className="grid grid-cols-1 gap-4 lg:col-span-2">
           {/* Welcome panel */}
@@ -123,10 +169,10 @@ export default function Home() {
 
           {/* marketing Actions panel */}
           <ActionsPanel
-            actions={marketingActions}
-            ariaLabelledby="marketing-action-title"
-            sr="marketing Actions"
-            headTitle="Generate best marketing content."
+            actions={socialMediaAndAds}
+            ariaLabelledby="social-media-action-title"
+            sr="Social Media and Ads Actions"
+            headTitle="Social Media and Ads."
           />
         </div>
 
@@ -134,7 +180,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-4">
           {/* Announcements */}
           <section aria-labelledby="announcements-title">
-            <div className="rounded-lg bg-white overflow-hidden shadow">
+            <div className="overflow-hidden rounded-lg bg-white shadow">
               <div className="p-6">
                 <h2
                   className="text-base font-medium text-gray-900"
@@ -146,7 +192,7 @@ export default function Home() {
                   <div>No new announcement</div>
                 ) : (
                   <>
-                    <div className="flow-root mt-6">
+                    <div className="mt-6 flow-root">
                       <ul
                         role="list"
                         className="-my-5 divide-y divide-gray-200"
@@ -178,7 +224,7 @@ export default function Home() {
                     <div className="mt-6">
                       <a
                         href="#"
-                        className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                        className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
                       >
                         View all
                       </a>
@@ -191,7 +237,7 @@ export default function Home() {
 
           {/* Recent Hires */}
           <section aria-labelledby="recent-hires-title">
-            <div className="rounded-lg bg-white overflow-hidden shadow">
+            <div className="overflow-hidden rounded-lg bg-white shadow">
               <div className="p-6">
                 <h2
                   className="text-base font-medium text-gray-900"
@@ -203,7 +249,7 @@ export default function Home() {
                   <>Feature coming soon</>
                 ) : (
                   <>
-                    <div className="flow-root mt-6">
+                    <div className="mt-6 flow-root">
                       <ul
                         role="list"
                         className="-my-5 divide-y divide-gray-200"
@@ -218,18 +264,18 @@ export default function Home() {
                                   alt=""
                                 />
                               </div>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-900 truncate">
+                              <div className="min-w-0 flex-1">
+                                <p className="truncate text-sm font-medium text-gray-900">
                                   {person.name}
                                 </p>
-                                <p className="text-sm text-gray-500 truncate">
-                                  {"@" + person.handle}
+                                <p className="truncate text-sm text-gray-500">
+                                  {'@' + person.handle}
                                 </p>
                               </div>
                               <div>
                                 <a
                                   href={person.href}
-                                  className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50"
+                                  className="inline-flex items-center rounded-full border border-gray-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50"
                                 >
                                   View
                                 </a>
@@ -242,7 +288,7 @@ export default function Home() {
                     <div className="mt-6">
                       <a
                         href="#"
-                        className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                        className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
                       >
                         View all
                       </a>
@@ -265,11 +311,11 @@ Home.getLayout = (page) => {
 function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
   return (
     <section aria-labelledby={ariaLabelledby}>
-      <div className="rounded-b-lg bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
+      <div className="divide-y divide-gray-200 overflow-hidden rounded-b-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
         <h2 className="sr-only" id={ariaLabelledby}>
           {sr}
         </h2>
-        <div className="col-span-2 p-2 bg-white rounded-t pl-4">
+        <div className="col-span-2 rounded-t bg-white p-2 pl-4">
           {headTitle}
         </div>
         {actions.map((action, actionIdx) => (
@@ -277,11 +323,11 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
             key={action.name}
             className={classNames(
               action.hoverBackground,
-              actionIdx === actions.length - 2 ? "sm:rounded-bl-lg" : "",
+              actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
               actionIdx === actions.length - 1
-                ? "rounded-bl-lg rounded-br-lg sm:rounded-bl-none"
-                : "",
-              "relative group bg-white  p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-gray-500"
+                ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none'
+                : '',
+              'group relative bg-white  p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-gray-500',
             )}
           >
             <div>
@@ -289,7 +335,7 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
                 className={classNames(
                   action.iconBackground,
                   action.iconForeground,
-                  "rounded-lg inline-flex p-3 ring-4 ring-white"
+                  'inline-flex rounded-lg p-3 ring-4 ring-white',
                 )}
               >
                 {action.icon ? (
@@ -304,22 +350,22 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
                 )}
               </span>
               {action.comingSoon && (
-                <div className="bg-yellow-200 text-yellow-900 text-xl">
+                <div className="bg-yellow-200 text-xl text-yellow-900">
                   Coming soon
                 </div>
               )}
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-medium">
-                {action.href === "#" ? (
+                {action.href === '#' ? (
                   <div className="focus:outline-none">
                     {/* Extend touch target to entire panel */}
                     <span className="absolute inset-0" aria-hidden="true" />
                     {action.name}
                   </div>
                 ) : (
-                  <Link href={"/marketingtools/" + action.href}>
-                    <div className="focus:outline-none cursor-pointer">
+                  <Link href={'/socialtools/' + action.href}>
+                    <div className="cursor-pointer focus:outline-none">
                       {/* Extend touch target to entire panel */}
                       <span className="absolute inset-0" aria-hidden="true" />
                       {action.name}
@@ -348,7 +394,7 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
     </section>
   );
 }
-import Link from "next/link";
+import Link from 'next/link';
 function WelcomePanel() {
   const { user, tokens } = useContext(UserContext);
   // const stats = [
@@ -359,7 +405,7 @@ function WelcomePanel() {
 
   return (
     <section aria-labelledby="profile-overview-title">
-      <div className="rounded-lg bg-white overflow-hidden shadow">
+      <div className="overflow-hidden rounded-lg bg-white shadow">
         <h2 className="sr-only" id="profile-overview-title">
           Profile Overview
         </h2>
@@ -381,13 +427,13 @@ function WelcomePanel() {
                   {user.displayName}
                 </p>
                 <p className="text-sm font-medium text-gray-600">
-                  {tokens + " tokens remaining"}
+                  {tokens + ' tokens remaining'}
                 </p>
               </div>
             </div>
             <div className="mt-5 flex justify-center sm:mt-0">
               <Link href="/pricing" passHref>
-                <div className="flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 cursor-pointer">
+                <div className="flex cursor-pointer items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
                   Recharge Tokens
                 </div>
               </Link>

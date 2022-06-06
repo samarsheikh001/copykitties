@@ -198,7 +198,7 @@ export default function MarketToolsNavigation(sidebarOpen, setSidebarOpen) {
                 </div>
                 <nav aria-label="Sidebar" className="mt-5">
                   <div className="space-y-1 px-2">
-                    {navigation.map((item, index) => (
+                    {filteredNavigation.map((item, index) => (
                       <div key={index}>
                         <div>
                           <item.icon className="h-12 w-12" />
@@ -263,7 +263,7 @@ export default function MarketToolsNavigation(sidebarOpen, setSidebarOpen) {
                   />
                   {filteredNavigation.map((item, index) => (
                     <div key={index}>
-                      <Link href={'/marketingtools/' + item.href} passHref>
+                      <Link href={'/socialtools/' + item.href} passHref replace>
                         <div
                           className={classNames(
                             'flex cursor-pointer items-center space-x-2 rounded p-2',
