@@ -6,7 +6,7 @@ import FacebookIcon from '/public/icons/facebook.svg';
 import EmptyIcon from '/public/icons/empty.svg';
 
 import FormBuilder from '../../components/common/FormBuilder';
-
+import CatLoader from '../../components/common/loader/Cat/CatLoader';
 
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -117,16 +117,20 @@ const marketingTools = {
 
 export default function MarketingTools(params) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [resultsArray, setResultsArray] = useState([]);
   if (!router.query.slug) return <></>;
 
   async function onSubmitData({ name, description }) {
     console.log(description);
+    setResultsArray([]);
+    setLoading(true);
     const res = await fetchPostJSON('/api/generate/marketingtools', {
       brandName: name,
       description,
       toPredict: marketingTools[router.query.slug].heading,
     });
+    setLoading(false);
     setResultsArray(res);
   }
   return (
@@ -179,21 +183,17 @@ export default function MarketingTools(params) {
           </div>
 
           <div className="h-full overflow-y-auto">
-            {resultsArray.length == 0 && (
-              <div
-                className="flex
-              h-full
-              flex-col
-              items-center
-              pt-20
-            "
-              >
-                <EmptyIcon className="w-44" />
-                <div className="py-2 text-gray-700">
-                  {"You haven't generated copy yet"}
+            {resultsArray.length == 0 &&
+              (loading ? (
+                <CatLoader />
+              ) : (
+                <div className="flex flex-col items-center pt-20">
+                  <EmptyIcon className="w-44" />
+                  <div className="py-2 text-gray-700">
+                    {"You haven't generated copy yet"}
+                  </div>
                 </div>
-              </div>
-            )}
+              ))}
             <ul className="space-y-4 p-2 sm:pb-56">
               {resultsArray.map((result, index) => {
                 return <ResultCard key={index} text={result.text} />;

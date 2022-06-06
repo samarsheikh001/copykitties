@@ -1,5 +1,3 @@
-// import styles from "./CatLoader.module.css";
-
 export default function CatLoader(params) {
   return (
     <div className="overflow-hidden">
