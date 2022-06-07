@@ -127,6 +127,14 @@ const socialMediaAndAds = [
     hoverBackground: 'hover:bg-blue-50',
     description: 'Create facebook primary texts.',
   },
+  {
+    svg: '/icons/tiktok.svg',
+    name: 'Tiktok Brainstorm Topics',
+    href: 'tiktok-brainstorm-topics',
+    iconBackground: 'bg-slate-50',
+    hoverBackground: 'hover:bg-slate-50',
+    description: 'Brainstorm tiktok ideas.',
+  },
 ];
 
 const recentProjects = [
