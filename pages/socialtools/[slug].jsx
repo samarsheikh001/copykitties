@@ -3,6 +3,8 @@ import GoogleIcon from '/public/icons/google.svg';
 import ProductIcon from '/public/icons/product.svg';
 import FacebookIcon from '/public/icons/facebook.svg';
 import TiktokIcon from '/public/icons/tiktok.svg';
+import YoutubeIcon from '/public/icons/youtube.svg';
+import QuoraIcon from '/public/icons/quora.svg';
 
 import EmptyIcon from '/public/icons/empty.svg';
 
@@ -10,11 +12,12 @@ import FormBuilder from '../../components/common/FormBuilder';
 import CatLoader from '../../components/common/loader/cat/CatLoader';
 
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ResultCard from '../../components/cards/ResultCard';
 
 import { fetchPostJSON } from '../../utils/api-helpers';
+import { subBusinessDays } from 'date-fns';
 
 const marketingTools = {
   'google-ads-headline': {
@@ -127,12 +130,70 @@ const marketingTools = {
       },
     ],
   },
+  'video-titles': {
+    heading: 'Video Titles',
+    subHeading:
+      "Write compelling YouTube video title to catch people's attention.",
+    icon: YoutubeIcon,
+    textFields: [
+      {
+        title: 'What is your video about?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'A video tutorial about eye makeup.',
+      },
+    ],
+  },
+  'video-descriptions': {
+    heading: 'Video Descriptions',
+    subHeading:
+      'Write compelling YouTube descriptions to get people interested in your video.',
+    icon: YoutubeIcon,
+    textFields: [
+      {
+        title: 'What is the title of your video?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'How to do a natural eye makeup look.',
+      },
+    ],
+  },
+  'video-tags-generator': {
+    heading: 'Youtube Tags Generator',
+    subHeading:
+      'Generate SEO-optimized YouTube tags / keywords for your video.',
+    icon: YoutubeIcon,
+    textFields: [
+      {
+        title: 'Enter your video title or a keyword',
+        name: 'description',
+        isTextarea: true,
+        placeholder: 'e.g. eye makeup',
+      },
+    ],
+  },
+  'quora-answers': {
+    heading: 'Quora Answers',
+    subHeading: 'Generate creative answers based on a question from Quora.',
+    icon: QuoraIcon,
+    textFields: [
+      {
+        title: 'Quora Question',
+        name: 'description',
+        isTextarea: true,
+        placeholder:
+          'What are some of the easy things that anyone can do to keep improving their Creativity?',
+        rowNumbers: 3,
+      },
+    ],
+  },
 };
 
 export default function MarketingTools(params) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [resultsArray, setResultsArray] = useState([]);
+
   if (!router.query.slug) return <></>;
 
   async function onSubmitData({ name, description }) {
@@ -147,6 +208,7 @@ export default function MarketingTools(params) {
     setLoading(false);
     setResultsArray(res);
   }
+
   return (
     <div className="h-full sm:overflow-hidden">
       <div className="flex items-start space-x-4 border-b p-4 sm:items-center">

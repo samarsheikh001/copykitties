@@ -111,6 +111,8 @@ import GoogleIcon from '/public/icons/google.svg';
 import ProductIcon from '/public/icons/product.svg';
 import FacebookIcon from '/public/icons/facebook.svg';
 import TiktokIcon from '/public/icons/tiktok.svg';
+import YoutubeIcon from '/public/icons/youtube.svg';
+import QuoraIcon from '/public/icons/quora.svg';
 
 const navigation = [
   {
@@ -143,6 +145,18 @@ const navigation = [
     title: 'Tiktok Brainstorm Topics',
     icon: TiktokIcon,
   },
+  { href: 'video-titles', title: 'Video Titles', icon: YoutubeIcon },
+  {
+    href: 'video-descriptions',
+    title: 'Video Descriptions',
+    icon: YoutubeIcon,
+  },
+  {
+    href: 'video-tags-generator',
+    title: 'Youtube Tags Generator',
+    icon: YoutubeIcon,
+  },
+  { href: 'quora-answers', title: 'Quora Answers', icon: QuoraIcon },
 ];
 
 export default function MarketToolsNavigation(sidebarOpen, setSidebarOpen) {

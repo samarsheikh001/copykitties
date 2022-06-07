@@ -98,12 +98,68 @@ const marketingTools = {
   },
   'tiktok-brainstorm-topics': {
     heading: 'Tiktok Brainstorm Topics',
-    subHeading: 'Create facebook listicle.',
+    subHeading: 'Brainstorm tiktok ideas.',
     icon: 'TiktokIcon',
     textFields: [
       {
-        title: 'What is your topic',
-        name: 'topic',
+        title: 'What is your topic description?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: '5 easy ways to come up with content ideas',
+      },
+    ],
+  },
+  'video-titles': {
+    heading: 'Video Titles',
+    subHeading:
+      "Write compelling YouTube video title to catch people's attention.",
+    icon: 'YoutubeIcon',
+    textFields: [
+      {
+        title: 'What is your topic description?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: '5 easy ways to come up with content ideas',
+      },
+    ],
+  },
+  'video-descriptions': {
+    heading: 'Video Descriptions',
+    subHeading:
+      'Write compelling YouTube descriptions to get people interested in your video.',
+    icon: 'YoutubeIcon',
+    textFields: [
+      {
+        title: 'What is your topic description?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: '5 easy ways to come up with content ideas',
+      },
+    ],
+  },
+  'video-tags-generator': {
+    heading: 'Youtube Tags Generator',
+    subHeading:
+      'Generate SEO-optimized YouTube tags / keywords for your video.',
+    icon: 'YoutubeIcon',
+    textFields: [
+      {
+        title: 'What is your topic description?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: '5 easy ways to come up with content ideas',
+      },
+    ],
+  },
+  'quora-answers': {
+    heading: 'Quora Answers',
+    subHeading:
+      'Generate creative answers based on a question from Quora.',
+    icon: 'QuoraIcon',
+    textFields: [
+      {
+        title: 'What is your topic description?',
+        name: 'description',
         isTextarea: true,
         placeholder: '5 easy ways to come up with content ideas',
       },

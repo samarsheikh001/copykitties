@@ -1,14 +1,24 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import BaseInput from '../common/BaseInput';
 import BaseTextArea from '../common/BaseTextArea';
 
 export default function FormBuilder({ onSubmit, textFields }) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    reset();
+  }, [reset, router.query.slug]);
+
   return (
     <>
       <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
@@ -17,6 +27,7 @@ export default function FormBuilder({ onSubmit, textFields }) {
             return textField.isTextarea ? (
               <BaseTextArea
                 key={index}
+                rows={textField.rowNumbers}
                 inputName={textField.name}
                 title={textField.title}
                 placeholder={textField.placeholder}
