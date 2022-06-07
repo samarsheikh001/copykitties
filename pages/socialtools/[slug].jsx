@@ -2,6 +2,7 @@ import MarketingToolsNav from '../../components/layouts/socialtools/SocialToolsN
 import GoogleIcon from '/public/icons/google.svg';
 import ProductIcon from '/public/icons/product.svg';
 import FacebookIcon from '/public/icons/facebook.svg';
+import TiktokIcon from '/public/icons/tiktok.svg';
 
 import EmptyIcon from '/public/icons/empty.svg';
 
@@ -113,6 +114,19 @@ const marketingTools = {
       },
     ],
   },
+  'tiktok-brainstorm-topics': {
+    heading: 'Tiktok Brainstorm Topics',
+    subHeading: 'Brainstorm tiktok ideas.',
+    icon: TiktokIcon,
+    textFields: [
+      {
+        title: 'What is your topic description?',
+        name: 'description',
+        isTextarea: true,
+        placeholder: '5 easy ways to come up with content ideas',
+      },
+    ],
+  },
 };
 
 export default function MarketingTools(params) {
@@ -195,9 +209,6 @@ export default function MarketingTools(params) {
                 </div>
               ))}
             <ul className="space-y-4 p-2 sm:pb-56">
-              {resultsArray.map((result, index) => {
-                return <ResultCard key={index} text={result.text} />;
-              })}
               {resultsArray.map((result, index) => {
                 return <ResultCard key={index} text={result.text} />;
               })}

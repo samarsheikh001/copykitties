@@ -110,6 +110,7 @@ import { XIcon } from '@heroicons/react/outline';
 import GoogleIcon from '/public/icons/google.svg';
 import ProductIcon from '/public/icons/product.svg';
 import FacebookIcon from '/public/icons/facebook.svg';
+import TiktokIcon from '/public/icons/tiktok.svg';
 
 const navigation = [
   {
@@ -136,6 +137,11 @@ const navigation = [
     href: 'facebook-primary-text',
     title: 'Facebook Primary Text',
     icon: FacebookIcon,
+  },
+  {
+    href: 'tiktok-brainstorm-topics',
+    title: 'Tiktok Brainstorm Topics',
+    icon: TiktokIcon,
   },
 ];
 

@@ -96,6 +96,19 @@ const marketingTools = {
       },
     ],
   },
+  'tiktok-brainstorm-topics': {
+    heading: 'Tiktok Brainstorm Topics',
+    subHeading: 'Create facebook listicle.',
+    icon: 'TiktokIcon',
+    textFields: [
+      {
+        title: 'What is your topic',
+        name: 'topic',
+        isTextarea: true,
+        placeholder: '5 easy ways to come up with content ideas',
+      },
+    ],
+  },
 };
 const result = [];
 for (const a of Object.keys(marketingTools)) {

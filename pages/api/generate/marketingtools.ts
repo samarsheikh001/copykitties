@@ -8,7 +8,7 @@ export default async function handler(
     const description: string = req.body.description;
     const brandName: string = req.body.brandName;
     const toPredict: string = req.body.toPredict;
-    console.log(description);
+    console.log(toPredict);
 
     try {
       const result = await generator(description, brandName, toPredict);
@@ -29,12 +29,20 @@ async function generator(
   brandName: string,
   toPredict: string,
 ) {
-  console.log(
-    `generate '${toPredict}' for following brand description named ${brandName}:\n${description}.`,
-  );
+  let prompt: string;
+  switch (toPredict) {
+    case 'Tiktok Brainstorm Topics':
+      console.log('Yaay');
+
+      prompt = `generate ${toPredict} for following description :\n${description}.`;
+      break;
+    default:
+      prompt = `generate ${toPredict} for following brand description named ${brandName}:\n${description}.`;
+  }
+  console.log(prompt);
 
   const response = await openai.createCompletion('text-davinci-002', {
-    prompt: `generate ${toPredict} for following brand description named ${brandName}:\n${description}.`,
+    prompt,
     temperature: 0.7,
     max_tokens: 120,
     top_p: 1,
