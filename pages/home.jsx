@@ -7,26 +7,26 @@ import { UserContext } from '../lib/context';
 import AuthCheck from '../components/common/AuthCheck';
 
 const actions = [
-  {
-    icon: NewspaperIcon,
-    name: 'Blog Post',
-    href: '#',
-    iconForeground: 'text-blue-700',
-    iconBackground: 'bg-blue-50',
-    hoverBackground: 'hover:bg-blue-50',
-    description: 'Let AI Help You Write Better, More Engaging Blog Posts',
-    comingSoon: true,
-  },
-  {
-    icon: PencilAltIcon,
-    name: 'Article',
-    href: 'Article',
-    iconForeground: 'text-purple-700',
-    iconBackground: 'bg-purple-50',
-    hoverBackground: 'hover:bg-purple-50',
-    description:
-      'The easiest way to write better articles for School or Work without plagiarism',
-  },
+  // {
+  //   icon: NewspaperIcon,
+  //   name: 'Blog Post',
+  //   href: '#',
+  //   iconForeground: 'text-blue-700',
+  //   iconBackground: 'bg-blue-50',
+  //   hoverBackground: 'hover:bg-blue-50',
+  //   description: 'Let AI Help You Write Better, More Engaging Blog Posts',
+  //   comingSoon: true,
+  // },
+  // {
+  //   icon: PencilAltIcon,
+  //   name: 'Article',
+  //   href: 'Article',
+  //   iconForeground: 'text-purple-700',
+  //   iconBackground: 'bg-purple-50',
+  //   hoverBackground: 'hover:bg-purple-50',
+  //   description:
+  //     'The easiest way to write better articles for School or Work without plagiarism',
+  // },
 ];
 
 // const socialMediaAndAds = [
@@ -84,15 +84,15 @@ const actions = [
 // ];
 
 const socialMediaAndAds = [
-  {
-    svg: '/icons/playstore.svg',
-    name: 'App publish content',
-    href: 'AppTitle',
-    iconBackground: 'bg-fuchsia-50',
-    hoverBackground: 'hover:bg-fuchsia-50',
-    description:
-      'Easily create descriptions, titles, and meta keywords for your app in seconds.',
-  },
+  // {
+  //   svg: '/icons/playstore.svg',
+  //   name: 'App publish content',
+  //   href: 'AppTitle',
+  //   iconBackground: 'bg-fuchsia-50',
+  //   hoverBackground: 'hover:bg-fuchsia-50',
+  //   description:
+  //     'Easily create descriptions, titles, and meta keywords for your app in seconds.',
+  // },
   {
     svg: '/icons/google.svg',
     name: 'Google ads Headline',
