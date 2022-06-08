@@ -24,8 +24,7 @@ async function rewrite(tokens: string) {
   console.log(tokens);
   const response = await openai.createCompletion({
     model: 'text-davinci-002',
-    prompt:
-      `paraphrase this in simple tone:\n\n${tokens}`,
+    prompt: `paraphrase this in simple tone:\n\n${tokens}`,
     temperature: 1,
     max_tokens: 364,
     top_p: 1,
