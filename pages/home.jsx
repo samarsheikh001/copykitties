@@ -7,26 +7,26 @@ import { UserContext } from '../lib/context';
 import AuthCheck from '../components/common/AuthCheck';
 
 const actions = [
-  // {
-  //   icon: NewspaperIcon,
-  //   name: 'Blog Post',
-  //   href: '#',
-  //   iconForeground: 'text-blue-700',
-  //   iconBackground: 'bg-blue-50',
-  //   hoverBackground: 'hover:bg-blue-50',
-  //   description: 'Let AI Help You Write Better, More Engaging Blog Posts',
-  //   comingSoon: true,
-  // },
-  // {
-  //   icon: PencilAltIcon,
-  //   name: 'Article',
-  //   href: 'Article',
-  //   iconForeground: 'text-purple-700',
-  //   iconBackground: 'bg-purple-50',
-  //   hoverBackground: 'hover:bg-purple-50',
-  //   description:
-  //     'The easiest way to write better articles for School or Work without plagiarism',
-  // },
+  {
+    icon: NewspaperIcon,
+    name: 'Blog Post',
+    href: '#',
+    iconForeground: 'text-blue-700',
+    iconBackground: 'bg-blue-50',
+    hoverBackground: 'hover:bg-blue-50',
+    description: 'Let AI Help You Write Better, More Engaging Blog Posts',
+    comingSoon: true,
+  },
+  {
+    icon: PencilAltIcon,
+    name: 'Article Rewriter',
+    href: '/tools/article-rewriter',
+    iconForeground: 'text-purple-700',
+    iconBackground: 'bg-purple-50',
+    hoverBackground: 'hover:bg-purple-50',
+    description:
+      'The easiest way to write better articles for School or Work without plagiarism',
+  },
 ];
 
 // const socialMediaAndAds = [
@@ -96,7 +96,7 @@ const socialMediaAndAds = [
   {
     svg: '/icons/google.svg',
     name: 'Google ads Headline',
-    href: 'google-ads-headline',
+    href: '/socialtools/google-ads-headline',
     iconBackground: 'bg-teal-50',
     hoverBackground: 'hover:bg-teal-50',
     description:
@@ -105,7 +105,7 @@ const socialMediaAndAds = [
   {
     svg: '/icons/google.svg',
     name: 'Google ads Description',
-    href: 'google-ads-description',
+    href: '/socialtools/google-ads-description',
     iconBackground: 'bg-teal-50',
     hoverBackground: 'hover:bg-teal-50',
     description:
@@ -114,7 +114,7 @@ const socialMediaAndAds = [
   {
     svg: '/icons/facebook.svg',
     name: 'Facebook Listicle',
-    href: 'facebook-listicle',
+    href: '/socialtools/facebook-listicle',
     iconBackground: 'bg-blue-50',
     hoverBackground: 'hover:bg-blue-50',
     description: 'Create facebook listicle.',
@@ -122,7 +122,7 @@ const socialMediaAndAds = [
   {
     svg: '/icons/facebook.svg',
     name: 'Facebook Primary Text',
-    href: 'facebook-primary-text',
+    href: '/socialtools/facebook-primary-text',
     iconBackground: 'bg-blue-50',
     hoverBackground: 'hover:bg-blue-50',
     description: 'Create facebook primary texts.',
@@ -130,7 +130,7 @@ const socialMediaAndAds = [
   {
     svg: '/icons/tiktok.svg',
     name: 'Tiktok Brainstorm Topics',
-    href: 'tiktok-brainstorm-topics',
+    href: '/socialtools/tiktok-brainstorm-topics',
     iconBackground: 'bg-slate-50',
     hoverBackground: 'hover:bg-slate-50',
     description: 'Brainstorm tiktok ideas.',
@@ -372,7 +372,7 @@ function ActionsPanel({ ariaLabelledby, sr, headTitle, actions }) {
                     {action.name}
                   </div>
                 ) : (
-                  <Link href={'/socialtools/' + action.href}>
+                  <Link href={action.href}>
                     <div className="cursor-pointer focus:outline-none">
                       {/* Extend touch target to entire panel */}
                       <span className="absolute inset-0" aria-hidden="true" />
