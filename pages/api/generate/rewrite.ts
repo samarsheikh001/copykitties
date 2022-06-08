@@ -5,9 +5,11 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === 'POST') {
-    const { text } = req.body;
+    const { text, tone } = req.body;
+    console.log('hello');
+
     try {
-      const data = await rewrite(text);
+      const data = await rewrite(text, tone);
       res.status(200).json(data);
     } catch (err) {
       const errorMessage =
@@ -20,11 +22,11 @@ export default async function handler(
   }
 }
 
-async function rewrite(tokens: string) {
-  console.log(tokens);
+async function rewrite(tokens: string, tone: string) {
+  console.log(`paraphrase this in ${tone} tone:\n\n${tokens}`);
   const response = await openai.createCompletion({
     model: 'text-davinci-002',
-    prompt: `paraphrase this in simple tone:\n\n${tokens}`,
+    prompt: `paraphrase this in ${tone} tone:\n\n${tokens}`,
     temperature: 1,
     max_tokens: 364,
     top_p: 1,
