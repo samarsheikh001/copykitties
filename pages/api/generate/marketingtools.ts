@@ -41,7 +41,8 @@ async function generator(
   }
   console.log(prompt);
 
-  const response = await openai.createCompletion('text-davinci-002', {
+  const response = await openai.createCompletion({
+    model: 'text-davinci-002',
     prompt,
     temperature: 0.7,
     max_tokens: 120,
