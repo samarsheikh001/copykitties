@@ -1,29 +1,29 @@
-import { ChevronRightIcon, StarIcon } from "@heroicons/react/solid";
-import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
-import Head from "next/head";
+import { ChevronRightIcon, StarIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
+import Head from 'next/head';
 
-import { signIn, signOut } from "../lib/firebase";
+import { signIn, signOut } from '../lib/firebase';
 
 const stats = [
-  { label: "Founded", value: "2021" },
-  { label: "Employees", value: "5" },
-  { label: "Beta Users", value: "78" },
+  { label: 'Founded', value: '2021' },
+  { label: 'Employees', value: '5' },
+  { label: 'Beta Users', value: '78' },
 ];
 
 const footerNavigation = {
   main: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Accessibility", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: 'About', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Jobs', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Accessibility', href: '#' },
+    { name: 'Partners', href: '#' },
   ],
   social: [
     {
-      name: "Facebook",
-      href: "#",
+      name: 'Facebook',
+      href: '#',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -35,8 +35,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: "Instagram",
-      href: "#",
+      name: 'Instagram',
+      href: '#',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -48,8 +48,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: "Twitter",
-      href: "#",
+      name: 'Twitter',
+      href: '#',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
@@ -57,8 +57,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: "GitHub",
-      href: "#",
+      name: 'GitHub',
+      href: '#',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -70,8 +70,8 @@ const footerNavigation = {
       ),
     },
     {
-      name: "Dribbble",
-      href: "#",
+      name: 'Dribbble',
+      href: '#',
       icon: (props: any) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -100,17 +100,17 @@ function LandingPage() {
       <div className="bg-white">
         <main>
           {/* Hero section */}
-          <div className="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
-            <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+          <div className="overflow-hidden pt-8 sm:pt-12 lg:relative lg:py-48">
+            <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-24 lg:px-8">
               <div>
                 <div className="mt-2">
                   <div>
                     <Link href="/pricing" passHref>
-                      <div className="inline-flex space-x-4 cursor-pointer">
-                        <span className="rounded bg-gray-50 px-2.5 py-1 text-xs font-semibold text-gray-500 tracking-wide uppercase">
+                      <div className="inline-flex cursor-pointer space-x-4">
+                        <span className="rounded bg-gray-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
                           Newly launched
                         </span>
-                        <span className="inline-flex items-center text-sm font-medium text-gray-500 space-x-1">
+                        <span className="inline-flex items-center space-x-1 text-sm font-medium text-gray-500">
                           <span>Get premium for cheapest</span>
                           <ChevronRightIcon
                             className="h-5 w-5"
@@ -121,9 +121,9 @@ function LandingPage() {
                     </Link>
                   </div>
                   <div className="mt-6 sm:max-w-xl">
-                    <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-                      Generate AI-powered content with{" "}
-                      <span className="underline text-gray-500">one click</span>
+                    <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                      Generate AI-powered content with{' '}
+                      <span className="text-gray-500 underline">one click</span>
                     </h1>
                     <p className="mt-6 text-xl text-gray-500">
                       With our AI content generator, you can create high-quality
@@ -135,7 +135,7 @@ function LandingPage() {
                   <div className="inline-block">{SignInButton(user)}</div>
                   <div className="mt-6">
                     <div className="inline-flex items-center divide-x divide-gray-300">
-                      <div className="flex-shrink-0 flex pr-5">
+                      <div className="flex flex-shrink-0 pr-5">
                         <StarIcon
                           className="h-5 w-5 text-yellow-400"
                           aria-hidden="true"
@@ -157,11 +157,11 @@ function LandingPage() {
                           aria-hidden="true"
                         />
                       </div>
-                      <div className="min-w-0 flex-1 pl-5 py-1 text-sm text-gray-500 sm:py-3">
+                      <div className="min-w-0 flex-1 py-1 pl-5 text-sm text-gray-500 sm:py-3">
                         <span className="font-medium text-gray-900">
                           Rated 5 stars
-                        </span>{" "}
-                        by over{" "}
+                        </span>{' '}
+                        by over{' '}
                         <span className="font-medium text-gray-500">
                           65 beta users
                         </span>
@@ -175,9 +175,9 @@ function LandingPage() {
             <div className="sm:mx-auto sm:max-w-3xl sm:px-6">
               <div className="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                 <div className="hidden sm:block">
-                  <div className="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full" />
+                  <div className="absolute inset-y-0 left-1/2 w-screen rounded-l-3xl bg-gray-50 lg:left-80 lg:right-0 lg:w-full" />
                   <svg
-                    className="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0"
+                    className="absolute top-8 right-1/2 -mr-3 lg:left-0 lg:m-0"
                     width={404}
                     height={392}
                     fill="none"
@@ -209,7 +209,7 @@ function LandingPage() {
                     />
                   </svg>
                 </div>
-                <div className="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+                <div className="relative -mr-40 pl-4 sm:mx-auto sm:max-w-3xl sm:px-0 lg:h-full lg:max-w-none lg:pl-12">
                   <img
                     className="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
                     src="/images/thumb.png"
@@ -222,13 +222,13 @@ function LandingPage() {
 
           {/* Testimonial/stats section */}
           <div className="relative mt-20">
-            <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
+            <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
               <div className="relative sm:py-16 lg:py-0">
                 <div
                   aria-hidden="true"
                   className="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen"
                 >
-                  <div className="absolute inset-y-0 right-1/2 w-full bg-gray-50 rounded-r-3xl lg:right-72" />
+                  <div className="absolute inset-y-0 right-1/2 w-full rounded-r-3xl bg-gray-50 lg:right-72" />
                   <svg
                     className="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12"
                     width={404}
@@ -262,9 +262,9 @@ function LandingPage() {
                     />
                   </svg>
                 </div>
-                <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0 lg:max-w-none lg:py-20">
+                <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
                   {/* Testimonial card*/}
-                  <div className="relative pt-64 pb-10 rounded-2xl shadow-xl overflow-hidden">
+                  <div className="relative overflow-hidden rounded-2xl pt-64 pb-10 shadow-xl">
                     <img
                       className="absolute inset-0 h-full w-full object-cover"
                       src="https://images.unsplash.com/photo-1521510895919-46920266ddb3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&fp-x=0.5&fp-y=0.6&fp-z=3&width=1440&height=1440&sat=-100"
@@ -273,17 +273,11 @@ function LandingPage() {
                     <div className="absolute inset-0 bg-gray-500 mix-blend-multiply" />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-600 via-gray-600 opacity-90" />
                     <div className="relative px-8">
-                      <div>
-                        <img
-                          className="h-12"
-                          src="https://tailwindui.com/img/logos/workcation.svg?color=white"
-                          alt="Workcation"
-                        />
-                      </div>
+                      <div></div>
                       <blockquote className="mt-8">
                         <div className="relative text-lg font-medium text-white md:flex-grow">
                           <svg
-                            className="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-gray-400"
+                            className="absolute top-0 left-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-gray-400"
                             fill="currentColor"
                             viewBox="0 0 32 32"
                             aria-hidden="true"
@@ -291,10 +285,10 @@ function LandingPage() {
                             <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                           </svg>
                           <p className="relative">
-                            {'"'}I{"'"}m a big fan of the AI writing tool. It
-                            {"'"}s helped me improve my writing skills and
-                            become a better writer. I highly recommend it to
-                            anyone who wants to improve their writing.{'"'}
+                            I was really struggling with writing my paper, but
+                            the ai writing website was a lifesaver! It helped me
+                            finish my paper in no time and I got a great grade.
+                            Thank you so much!
                           </p>
                         </div>
 
@@ -312,10 +306,10 @@ function LandingPage() {
               <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
                 {/* Content area */}
                 <div className="pt-12 sm:pt-16 lg:pt-20">
-                  <h2 className="text-3xl text-gray-900 font-extrabold tracking-tight sm:text-4xl">
+                  <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                     Get your writing on point with AI.
                   </h2>
-                  <div className="mt-6 text-gray-500 space-y-6">
+                  <div className="mt-6 space-y-6 text-gray-500">
                     <p className="text-lg">
                       Looking for a writing tool that can help you with your
                       blog articles, facebook ads, profile bio, quora answers,
@@ -357,6 +351,26 @@ function LandingPage() {
             </div>
           </div>
 
+          <div className="mx-auto max-w-md py-8 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="lg:grid lg:grid-cols-2 lg:items-center lg:gap-24">
+              <div className="px-4">
+                <h2 className="text-3xl font-bold lg:text-5xl">
+                  How Copykitties works?
+                </h2>
+                <p className="py-2 text-gray-700 lg:text-xl">
+                  Copykitties can help you achieve your writing goals with
+                  powerful suggestions and on-demand editing - all without
+                  disrupting your writing flow.
+                </p>
+              </div>
+              <img
+                className="mx-auto lg:rounded-xl my-5 lg:m-10"
+                src="/images/howitworks.png"
+                alt=""
+              />
+            </div>
+          </div>
+
           {/* Logo cloud section
      <div className="mt-32">
        <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -390,12 +404,12 @@ function LandingPage() {
            </div>
          </div>
        </div>
-     </div> */}
+     </div> 
 
           {/* CTA section */}
           <div className="relative mt-24 sm:mt-32 sm:py-16">
             <div aria-hidden="true" className="hidden sm:block">
-              <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-3xl" />
+              <div className="absolute inset-y-0 left-0 w-1/2 rounded-r-3xl bg-gray-50" />
               <svg
                 className="absolute top-8 left-1/2 -ml-3"
                 width={404}
@@ -430,7 +444,7 @@ function LandingPage() {
               </svg>
             </div>
             <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-              <div className="relative rounded-2xl px-6 py-10 bg-gray-500 overflow-hidden shadow-xl sm:px-12 sm:py-20">
+              <div className="relative overflow-hidden rounded-2xl bg-gray-500 px-6 py-10 shadow-xl sm:px-12 sm:py-20">
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0"
@@ -456,17 +470,17 @@ function LandingPage() {
                 </div>
                 <div className="relative">
                   <div className="sm:text-center">
-                    <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
+                    <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                       Get notified with new templates
                     </h2>
-                    <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-100">
+                    <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-100">
                       We adding templates to our platform every day. Subscribe
                       to our newsletter to get notified with new templates.
                     </p>
                   </div>
                   <form
                     action="#"
-                    className="mt-12 sm:mx-auto sm:max-w-lg sm:flex"
+                    className="mt-12 sm:mx-auto sm:flex sm:max-w-lg"
                   >
                     <div className="min-w-0 flex-1">
                       <label htmlFor="cta-email" className="sr-only">
@@ -475,14 +489,14 @@ function LandingPage() {
                       <input
                         id="cta-email"
                         type="email"
-                        className="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-500"
+                        className="block w-full rounded-md border border-transparent px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-500"
                         placeholder="Enter your email"
                       />
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-3">
                       <button
                         type="submit"
-                        className="block w-full rounded-md border border-transparent px-5 py-3 bg-gray-900 text-base font-medium text-white shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-500 sm:px-10"
+                        className="block w-full rounded-md border border-transparent bg-gray-900 px-5 py-3 text-base font-medium text-white shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-500 sm:px-10"
                       >
                         Notify me
                       </button>
@@ -496,7 +510,7 @@ function LandingPage() {
 
         {/* Footer section */}
         <footer className="mt-24 bg-gray-900 sm:mt-12">
-          <div className="mx-auto max-w-md py-12 px-4 overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-md overflow-hidden py-12 px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
             <nav
               className="-mx-5 -my-2 flex flex-wrap justify-center"
               aria-label="Footer"
@@ -536,14 +550,14 @@ function LandingPage() {
 
 export default LandingPage;
 
-import PrimaryLayout from "../components/layouts/primary/PrimaryLayout";
+import PrimaryLayout from '../components/layouts/primary/PrimaryLayout';
 LandingPage.getLayout = (page: any) => {
   return <PrimaryLayout>{page}</PrimaryLayout>;
 };
 
-import { UserContext } from "../lib/context";
-import { useContext } from "react";
-import { UserInfo } from "firebase/auth";
+import { UserContext } from '../lib/context';
+import { useContext } from 'react';
+import { UserInfo } from 'firebase/auth';
 function SignInButton(user?: UserInfo | null | undefined) {
   const router = useRouter();
   return (
@@ -553,9 +567,9 @@ function SignInButton(user?: UserInfo | null | undefined) {
           <div
             onClick={async () => {
               await signIn();
-              router.push("/home");
+              router.push('/home');
             }}
-            className="whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-black hover:bg-gray-700 cursor-pointer"
+            className="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-black px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700"
           >
             Start Writing For Free
           </div>
@@ -563,7 +577,7 @@ function SignInButton(user?: UserInfo | null | undefined) {
       ) : (
         <Link href="/home" passHref>
           <div>
-            <div className="whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-black hover:bg-gray-700 cursor-pointer">
+            <div className="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-black px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700">
               Goto Home
             </div>
             <div className="p-2 text-gray-700">
