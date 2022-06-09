@@ -5,6 +5,8 @@ import Head from 'next/head';
 
 import { signIn, signOut } from '../lib/firebase';
 
+import FAQ from '../components/home/faq';
+
 const stats = [
   { label: 'Founded', value: '2021' },
   { label: 'Employees', value: '5' },
@@ -364,12 +366,14 @@ function LandingPage() {
                 </p>
               </div>
               <img
-                className="mx-auto lg:rounded-xl my-5 lg:m-10"
+                className="mx-auto my-5 lg:m-10 lg:rounded-xl"
                 src="/images/howitworks.png"
                 alt=""
               />
             </div>
           </div>
+
+          <FAQ />
 
           {/* Logo cloud section
      <div className="mt-32">
