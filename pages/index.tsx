@@ -5,7 +5,7 @@ import Head from 'next/head';
 
 import { signIn, signOut } from '../lib/firebase';
 
-import FAQ from '../components/home/faq';
+import FAQ from '../components/home/FAQ';
 
 const stats = [
   { label: 'Founded', value: '2021' },
