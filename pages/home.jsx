@@ -5,6 +5,7 @@ import { NewspaperIcon, PencilAltIcon } from '@heroicons/react/outline';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../lib/context';
 import AuthCheck from '../components/common/AuthCheck';
+import Head from 'next/head';
 
 const actions = [
   {
@@ -158,157 +159,175 @@ const announcements = [
 
 export default function Home() {
   return (
-    <AuthCheck>
-      <h1 className="sr-only">Profile</h1>
-      {/* Main 3 column grid */}
-      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
-        {/* Left column */}
-        <div className="grid grid-cols-1 gap-4 lg:col-span-2">
-          {/* Welcome panel */}
-          <WelcomePanel />
+    <>
+      <Head>
+        <title>Home</title>
+        <meta
+          content="Copykitties is an ai powered copywriter that helps you create compelling, SEO-friendly content for your website."
+          name="description"
+        ></meta>
+      </Head>
+      <AuthCheck>
+        <h1 className="sr-only">Profile</h1>
+        {/* Main 3 column grid */}
+        <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
+          {/* Left column */}
+          <div className="grid grid-cols-1 gap-4 lg:col-span-2">
+            {/* Welcome panel */}
+            <WelcomePanel />
+{/* 
+            <div className='rounded-lg bg-white shadow p-4'>
+              <h2>Documents</h2>
+              <ul className='mt-2'>
+                <li className='text-gray-700 font-bold'>
+                  The seminar of watermelon
+                </li>
+              </ul>
+            </div> */}
 
-          {/*Actions panel */}
-          <ActionsPanel
-            actions={actions}
-            ariaLabelledby="action-title"
-            sr="Actions"
-            headTitle="Most used copykit (more templates coming soon)"
-          />
+            {/*Actions panel */}
+            <ActionsPanel
+              actions={actions}
+              ariaLabelledby="action-title"
+              sr="Actions"
+              headTitle="Most used copykit (more templates coming soon)"
+            />
 
-          {/* marketing Actions panel */}
-          <ActionsPanel
-            actions={socialMediaAndAds}
-            ariaLabelledby="social-media-action-title"
-            sr="Social Media and Ads Actions"
-            headTitle="Social Media and Ads."
-          />
-        </div>
+            {/* marketing Actions panel */}
+            <ActionsPanel
+              actions={socialMediaAndAds}
+              ariaLabelledby="social-media-action-title"
+              sr="Social Media and Ads Actions"
+              headTitle="Social Media and Ads."
+            />
+          </div>
 
-        {/* Right column */}
-        <div className="grid grid-cols-1 gap-4">
-          {/* Announcements */}
-          <section aria-labelledby="announcements-title">
-            <div className="overflow-hidden rounded-lg bg-white shadow">
-              <div className="p-6">
-                <h2
-                  className="text-base font-medium text-gray-900"
-                  id="announcements-title"
-                >
-                  Announcements
-                </h2>
-                {announcements.length == 0 ? (
-                  <div>No new announcement</div>
-                ) : (
-                  <>
-                    <div className="mt-6 flow-root">
-                      <ul
-                        role="list"
-                        className="-my-5 divide-y divide-gray-200"
-                      >
-                        {announcements.map((announcement) => (
-                          <li key={announcement.id} className="py-5">
-                            <div className="relative focus-within:ring-2 focus-within:ring-gray-500">
-                              <h3 className="text-sm font-semibold text-gray-800">
-                                <a
-                                  href={announcement.href}
-                                  className="hover:underline focus:outline-none"
-                                >
-                                  {/* Extend touch target to entire panel */}
-                                  <span
-                                    className="absolute inset-0"
-                                    aria-hidden="true"
+          {/* Right column */}
+          <div className="grid grid-cols-1 gap-4">
+            {/* Announcements */}
+            <section aria-labelledby="announcements-title">
+              <div className="overflow-hidden rounded-lg bg-white shadow">
+                <div className="p-6">
+                  <h2
+                    className="text-base font-medium text-gray-900"
+                    id="announcements-title"
+                  >
+                    Announcements
+                  </h2>
+                  {announcements.length == 0 ? (
+                    <div>No new announcement</div>
+                  ) : (
+                    <>
+                      <div className="mt-6 flow-root">
+                        <ul
+                          role="list"
+                          className="-my-5 divide-y divide-gray-200"
+                        >
+                          {announcements.map((announcement) => (
+                            <li key={announcement.id} className="py-5">
+                              <div className="relative focus-within:ring-2 focus-within:ring-gray-500">
+                                <h3 className="text-sm font-semibold text-gray-800">
+                                  <a
+                                    href={announcement.href}
+                                    className="hover:underline focus:outline-none"
+                                  >
+                                    {/* Extend touch target to entire panel */}
+                                    <span
+                                      className="absolute inset-0"
+                                      aria-hidden="true"
+                                    />
+                                    {announcement.title}
+                                  </a>
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+                                  {announcement.preview}
+                                </p>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="mt-6">
+                        <a
+                          href="#"
+                          className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                        >
+                          View all
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Recent Hires */}
+            <section aria-labelledby="recent-hires-title">
+              <div className="overflow-hidden rounded-lg bg-white shadow">
+                <div className="p-6">
+                  <h2
+                    className="text-base font-medium text-gray-900"
+                    id="recent-hires-title"
+                  >
+                    Recent Projects
+                  </h2>
+                  {recentProjects.length === 0 ? (
+                    <>Feature coming soon</>
+                  ) : (
+                    <>
+                      <div className="mt-6 flow-root">
+                        <ul
+                          role="list"
+                          className="-my-5 divide-y divide-gray-200"
+                        >
+                          {recentProjects.map((person) => (
+                            <li key={person.handle} className="py-4">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0">
+                                  <img
+                                    className="h-8 w-8 rounded-full"
+                                    src={person.imageUrl}
+                                    alt=""
                                   />
-                                  {announcement.title}
-                                </a>
-                              </h3>
-                              <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-                                {announcement.preview}
-                              </p>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-6">
-                      <a
-                        href="#"
-                        className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                      >
-                        View all
-                      </a>
-                    </div>
-                  </>
-                )}
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <p className="truncate text-sm font-medium text-gray-900">
+                                    {person.name}
+                                  </p>
+                                  <p className="truncate text-sm text-gray-500">
+                                    {'@' + person.handle}
+                                  </p>
+                                </div>
+                                <div>
+                                  <a
+                                    href={person.href}
+                                    className="inline-flex items-center rounded-full border border-gray-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50"
+                                  >
+                                    View
+                                  </a>
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="mt-6">
+                        <a
+                          href="#"
+                          className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                        >
+                          View all
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          </section>
-
-          {/* Recent Hires */}
-          <section aria-labelledby="recent-hires-title">
-            <div className="overflow-hidden rounded-lg bg-white shadow">
-              <div className="p-6">
-                <h2
-                  className="text-base font-medium text-gray-900"
-                  id="recent-hires-title"
-                >
-                  Recent Projects
-                </h2>
-                {recentProjects.length === 0 ? (
-                  <>Feature coming soon</>
-                ) : (
-                  <>
-                    <div className="mt-6 flow-root">
-                      <ul
-                        role="list"
-                        className="-my-5 divide-y divide-gray-200"
-                      >
-                        {recentProjects.map((person) => (
-                          <li key={person.handle} className="py-4">
-                            <div className="flex items-center space-x-4">
-                              <div className="flex-shrink-0">
-                                <img
-                                  className="h-8 w-8 rounded-full"
-                                  src={person.imageUrl}
-                                  alt=""
-                                />
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                <p className="truncate text-sm font-medium text-gray-900">
-                                  {person.name}
-                                </p>
-                                <p className="truncate text-sm text-gray-500">
-                                  {'@' + person.handle}
-                                </p>
-                              </div>
-                              <div>
-                                <a
-                                  href={person.href}
-                                  className="inline-flex items-center rounded-full border border-gray-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50"
-                                >
-                                  View
-                                </a>
-                              </div>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-6">
-                      <a
-                        href="#"
-                        className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                      >
-                        View all
-                      </a>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
-      </div>
-    </AuthCheck>
+      </AuthCheck>
+    </>
   );
 }
 
