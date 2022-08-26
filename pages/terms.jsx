@@ -1,21 +1,29 @@
 export default function Example() {
   return (
-    <div className="relative py-16 bg-white overflow-hidden">
-      <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
-        <div
-          className="relative h-full text-lg max-w-prose mx-auto"
-          aria-hidden="true"
-        >
+    <div className="overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 xl:py-36">
+      <div className="mx-auto max-w-max lg:max-w-7xl">
+        <div className="relative z-10 mb-8 md:mb-2 md:px-6">
+          <div className="max-w-prose text-base lg:max-w-none">
+            <h2 className="font-semibold uppercase leading-6 tracking-wide text-gray-600">
+              Transactions
+            </h2>
+            <p className="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl">
+              Terms and Services
+            </p>
+          </div>
+        </div>
+        <div className="relative">
           <svg
-            className="absolute top-12 left-full transform translate-x-32"
+            className="absolute top-0 right-0 -mt-20 -mr-20 hidden md:block"
             width={404}
             height={384}
             fill="none"
             viewBox="0 0 404 384"
+            aria-hidden="true"
           >
             <defs>
               <pattern
-                id="74b3fd99-0a6f-4271-bef2-e80eeafdf357"
+                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
                 x={0}
                 y={0}
                 width={20}
@@ -35,19 +43,20 @@ export default function Example() {
             <rect
               width={404}
               height={384}
-              fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"
+              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
             />
           </svg>
           <svg
-            className="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32"
+            className="absolute bottom-0 left-0 -mb-20 -ml-20 hidden md:block"
             width={404}
             height={384}
             fill="none"
             viewBox="0 0 404 384"
+            aria-hidden="true"
           >
             <defs>
               <pattern
-                id="f210dbf6-a58d-4871-961e-36d5016a0f49"
+                id="7a00fe67-0343-4a3c-8e81-c145097a3ce0"
                 x={0}
                 y={0}
                 width={20}
@@ -67,148 +76,108 @@ export default function Example() {
             <rect
               width={404}
               height={384}
-              fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
+              fill="url(#7a00fe67-0343-4a3c-8e81-c145097a3ce0)"
             />
           </svg>
-          <svg
-            className="absolute bottom-12 left-full transform translate-x-32"
-            width={404}
-            height={384}
-            fill="none"
-            viewBox="0 0 404 384"
-          >
-            <defs>
-              <pattern
-                id="d3eb07ae-5182-43e6-857d-35c643af9034"
-                x={0}
-                y={0}
-                width={20}
-                height={20}
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x={0}
-                  y={0}
-                  width={4}
-                  height={4}
-                  className="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width={404}
-              height={384}
-              fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)"
-            />
-          </svg>
+          <div className="relative md:bg-white md:p-6">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-6">
+              <div className="prose prose-lg prose-gray text-gray-500 lg:max-w-none">
+                <h3>Acknowledgment</h3>
+                <p>
+                  These are the Terms and Conditions governing the use of this
+                  Service and the agreement that operates between You and the
+                  Company. These Terms and Conditions set out the rights and
+                  obligations of all users regarding the use of the Service.
+                  Your access to and use of the Service is conditioned on Your
+                  acceptance of and compliance with these Terms and Conditions.
+                  These Terms and Conditions apply to all visitors, users and
+                  others who access or use the Service. By accessing or using
+                  the Service You agree to be bound by these Terms and
+                  Conditions. If You disagree with any part of these Terms and
+                  Conditions then You may not access the Service. You represent
+                  that you are over the age of 18. The Company does not permit
+                  those under 18 to use the Service. Your access to and use of
+                  the Service is also conditioned on Your acceptance of and
+                  compliance with the Privacy Policy of the Company. Our Privacy
+                  Policy describes Our policies and procedures on the
+                  collection, use and disclosure of Your personal information
+                  when You use the Application or the Website and tells You
+                  about Your privacy rights and how the law protects You. Please
+                  read Our Privacy Policy carefully before using Our Service.
+                </p>
+                <h3>Your Information</h3>
+                <p>
+                  If You wish to place an Order for Goods available on the
+                  Service, You may be asked to supply certain information
+                  relevant to Your Order including, without limitation, Your
+                  name, Your email, Your phone number, Your credit card number,
+                  the expiration date of Your credit card, Your billing address,
+                  and Your shipping information. You represent and warrant that:
+                  (i) You have the legal right to use any credit or debit
+                  card(s) or other payment method(s) in connection with any
+                  Order; and that (ii) the information You supply to us is true,
+                  correct and complete. By submitting such information, You
+                  grant us the right to provide the information to payment
+                  processing third parties for purposes of facilitating the
+                  completion of Your Order.
+                </p>
+                <h3>Order Cancellation</h3>
+                <p>
+                  We reserve the right to refuse or cancel Your Order at any
+                  time for certain reasons including but not limited to: Goods
+                  availability Errors in the description or prices for Goods
+                  Errors in Your Order We reserve the right to refuse or cancel
+                  Your Order if fraud or an unauthorized or illegal transaction
+                  is suspected.
+                </p>
+              </div>
+              <div className="prose prose-lg prose-gray mt-6 text-gray-500 lg:mt-0">
+                <h3>Your Order Cancellation Rights</h3>
+                <p>
+                  Any Goods you purchase can only be returned in accordance with
+                  these Terms and Conditions and Our Returns Policy. Our Returns
+                  Policy forms a part of these Terms and Conditions. Please read
+                  our Returns Policy to learn more about your right to cancel
+                  Your Order. Your right to cancel an Order only applies to
+                  Goods that are returned in the same condition as You received
+                  them. You should also include all of the products
+                  instructions, documents and wrappings. Goods that are damaged
+                  or not in the same condition as You received them or which are
+                  worn simply beyond opening the original packaging will not be
+                  refunded. You should therefore take reasonable care of the
+                  purchased Goods while they are in Your possession. We will
+                  reimburse You no later than 14 days from the day on which We
+                  receive the returned Goods. We will use the same means of
+                  payment as You used for the Order, and You will not incur any
+                  fees for such reimbursement. You will not have any right to
+                  cancel an Order for the supply of any of the following Goods:
+                  The supply of Goods made to Your specifications or clearly
+                  personalized. The supply of digital content which is not
+                  supplied on a tangible medium if the performance has begun
+                  with Your prior express consent and You have acknowledged Your
+                  loss of cancellation right.
+                </p>
+                <h3>Prices Policy</h3>
+                <p>
+                  The Company reserves the right to revise its prices at any
+                  time prior to accepting an Order. The prices quoted may be
+                  revised by the Company subsequent to accepting an Order in the
+                  event of any occurrence affecting delivery caused by
+                  government action, variation in customs duties, increased
+                  shipping charges, higher foreign exchange costs and any other
+                  matter beyond the control of the Company. In that event, You
+                  will have the right to cancel Your Order.
+                </p>
+                <h3>Contact Us</h3>
+                <p>
+                  If you have any questions about these Terms and Conditions,
+                  You can contact us: By email: samarsheikh001@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="text-lg max-w-prose mx-auto">
-        <h1>
-          <span className="block text-base text-center text-gray-600 font-semibold tracking-wide uppercase">
-            Terms and Conditions
-          </span>
-        </h1>
-      </div>
-      <div className=" max-w-lg mx-auto">
-        <li>1. Users must be 18 years of age or older to use our services.</li>{" "}
-        <li>2. Users agree to show their boobs before using our services.</li>{" "}
-        <li>
-          3. If users do not show their boobs, they will not be able to use our
-          services.{" "}
-        </li>{" "}
-        <li>
-          4. By using our services, users agree to our terms and conditions
-        </li>{" "}
-        <li>
-          5. We reserve the right to change our terms and conditions at any
-          time.
-        </li>
-        <li>
-          {" "}
-          6. Users are responsible for complying with our terms and conditions.
-          g our services, you agree to show your boobs.
-        </li>
-        <li>
-          {" "}
-          7. No rules apply on you unless you are Danica Lacanlale.
-        </li>
-      </div>
-      {/* <div className="relative px-4 sm:px-6 lg:px-8">
-          <div className="text-lg max-w-prose mx-auto">
-            <h1>
-              <span className="block text-base text-center text-gray-600 font-semibold tracking-wide uppercase">
-                Terms and Conditions
-              </span>
-              <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                JUST FOR DANICA LACANLCALE
-              </span>
-            </h1>
-            <p className="mt-8 text-xl text-gray-500 leading-8">
-              Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget
-              aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend
-              egestas fringilla sapien.
-            </p>
-          </div>
-          <div className="mt-6 prose prose-gray prose-lg text-gray-500 mx-auto">
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. <strong>Dignissim</strong> sed <strong>eget risus enim</strong>.
-              Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra
-              tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim.{' '}
-              <a href="#">Mattis mauris semper</a> sed amet vitae sed turpis id.
-            </p>
-            <ul role="list">
-              <li>Quis elit egestas venenatis mattis dignissim.</li>
-              <li>Cras cras lobortis vitae vivamus ultricies facilisis tempus.</li>
-              <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
-            </ul>
-            <p>
-              Quis semper vulputate aliquam venenatis egestas sagittis quisque orci. Donec commodo sit viverra aliquam
-              porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc
-              purus, diam commodo tincidunt turpis. Amet, duis sed elit interdum dignissim.
-            </p>
-            <h2>From beginner to expert in 30 days</h2>
-            <p>
-              Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh.
-              Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus
-              mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis
-              ipsum eu a sed convallis diam.
-            </p>
-            <blockquote>
-              <p>
-                Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique
-                pellentesque. Blandit amet, sed aenean erat arcu morbi.
-              </p>
-            </blockquote>
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae
-              sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.
-            </p>
-            <figure>
-              <img
-                className="w-full rounded-lg"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3"
-                alt=""
-                width={1310}
-                height={873}
-              />
-              <figcaption>Sagittis scelerisque nulla cursus in enim consectetur quam.</figcaption>
-            </figure>
-            <h2>Everything you need to get up and running</h2>
-            <p>
-              Purus morbi dignissim senectus mattis <a href="#">adipiscing</a>. Amet, massa quam varius orci dapibus
-              volutpat cras. In amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus
-              non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis auctor venenatis varius nunc,
-              congue erat ac. Cras fermentum convallis quam.
-            </p>
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae
-              sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.
-            </p>
-          </div>
-        </div> */}
     </div>
   );
 }
